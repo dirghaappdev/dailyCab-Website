@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Pune Cab App | Hassle-Free Cab Booking & Ride History | Shrirampur ⇄ Pune</title>
+  <meta name="description" content="Download the Daily Pune Cab Mobile Application. Enjoy 1-tap seat sharing and private cab booking, complete ride history with GST invoice downloads, and live GPS vehicle tracking between Shrirampur and Pune.">
+  <meta name="keywords" content="Daily Pune Cab App, Shrirampur Pune Cab Mobile App, ride history cab app, Pune taxi app, seat sharing app Shrirampur, Sangamner cab app">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Daily Pune Cab Mobile App - Hassle-Free Rides & Full Ride History">
+  <meta property="og:description" content="Book seat-sharing & private cabs, view full ride history, download GST invoices, and track your driver live in real time.">
+  <meta property="og:url" content="https://dailycab.co.in/app.html">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0b1528',
+              navyLight: '#14223d',
+              navyDark: '#060d19',
+              blue: '#0284c7',
+              blueHover: '#0369a1',
+              cyan: '#06b6d4',
+              cyanLight: '#38bdf8',
+              cyanGlow: '#00d2ff',
+              emerald: '#10b981',
+              emeraldHover: '#059669',
+              coral: '#ff5722'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Mukta', 'sans-serif'],
+            display: ['Outfit', 'Mukta', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-slate-900">
+
+  <!-- Top Announcement & Language Bar -->
+  <div class="bg-brand-navyDark text-white text-xs py-2 px-4 border-b border-white/10 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      
+      <!-- Back to website link -->
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="inline-flex items-center gap-1.5 font-bold text-brand-cyan hover:text-white transition">
+          <i class="fa-solid fa-arrow-left"></i> <span data-i18n="app_top_back">Back to Main Website</span>
+        </a>
+        <span class="text-white/20">|</span>
+        <span class="text-slate-300 font-medium hidden md:inline" data-i18n="app_top_subtitle">Official Passenger Application • Shrirampur ⇄ Pune</span>
+      </div>
+
+      <!-- Language Selector & Phone -->
+      <div class="flex items-center space-x-4">
+        <!-- Language Switcher Pill Selector -->
+        <div class="flex items-center bg-white/10 rounded-full p-0.5 border border-white/15 text-xs font-bold">
+          <button type="button" onclick="setLanguage('en')" class="lang-btn px-2.5 py-1 rounded-full transition active bg-brand-cyan text-brand-navy" data-lang="en">
+            EN
+          </button>
+          <button type="button" onclick="setLanguage('mr')" class="lang-btn px-2.5 py-1 rounded-full transition text-slate-300 hover:text-white" data-lang="mr">
+            मराठी
+          </button>
+          <button type="button" onclick="setLanguage('hi')" class="lang-btn px-2.5 py-1 rounded-full transition text-slate-300 hover:text-white" data-lang="hi">
+            हिंदी
+          </button>
+        </div>
+
+        <a href="tel:9529657004" class="hover:text-brand-cyanLight transition flex items-center gap-1 font-semibold">
+          <i class="fa-solid fa-phone text-brand-cyan"></i> 9529657004
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="bg-brand-navy/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- App Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-blue to-cyan-400 flex items-center justify-center text-white text-2xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </div>
+          <div>
+            <div class="font-display font-black text-2xl tracking-tight text-white flex items-center gap-2">
+              DAILY CAB <span class="text-xs uppercase px-2 py-0.5 rounded-full bg-brand-cyan text-brand-navy font-black tracking-wider">APP</span>
+            </div>
+            <div class="text-[11px] font-semibold text-brand-cyanLight tracking-wider uppercase">
+              Hassle-Free Booking & Ride History
+            </div>
+          </div>
+        </a>
+
+        <!-- Quick Links -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm">
+          <a href="#features" class="font-medium text-slate-300 hover:text-brand-cyan transition" data-i18n="app_nav_features">Features</a>
+          <a href="#ride-history" class="font-medium text-slate-300 hover:text-brand-cyan transition" data-i18n="app_nav_history">Ride History</a>
+          <a href="#how-it-works" class="font-medium text-slate-300 hover:text-brand-cyan transition" data-i18n="app_nav_how">How It Works</a>
+          <a href="#download" class="font-medium text-slate-300 hover:text-brand-cyan transition" data-i18n="app_nav_download">Download</a>
+          <a href="#faq" class="font-medium text-slate-300 hover:text-brand-cyan transition" data-i18n="app_nav_faq">App FAQs</a>
+        </nav>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center space-x-3">
+          <a href="#download" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-blue to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition flex items-center gap-2" data-i18n="app_btn_get_link">
+            <i class="fa-solid fa-download"></i> Get App Link
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-16 pb-24 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-to-b from-brand-navy via-slate-900 to-slate-950">
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:28px_28px]"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-blue/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Text & Badges -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30" data-i18n="app_hero_pill">
+            <i class="fa-solid fa-sparkles"></i> The Future of Commuting
+          </div>
+
+          <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.12]" data-i18n="app_hero_title">
+            The Smartest Way To Ride <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-sky-300 to-blue-300">
+              Shrirampur ⇄ Pune
+            </span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed" data-i18n="app_hero_desc">
+            Experience truly hassle-free travel. Book seat sharing or private cabs in seconds, inspect complete past ride history, download GST invoices, and track your cab's live location with estimated arrival times.
+          </p>
+
+          <!-- Highlight Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-left">
+            <div class="p-3 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-brand-cyan text-xl mb-1"><i class="fa-solid fa-receipt"></i></div>
+              <div class="font-bold text-xs text-white" data-i18n="app_badge_hist_title">Full Ride History</div>
+              <div class="text-[11px] text-slate-400" data-i18n="app_badge_hist_sub">1-click GST tax invoices</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-brand-cyan text-xl mb-1"><i class="fa-solid fa-location-crosshairs"></i></div>
+              <div class="font-bold text-xs text-white" data-i18n="app_badge_track_title">Live Cab Tracking</div>
+              <div class="text-[11px] text-slate-400" data-i18n="app_badge_track_sub">Accurate arrival countdown</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-brand-cyan text-xl mb-1"><i class="fa-solid fa-bolt"></i></div>
+              <div class="font-bold text-xs text-white" data-i18n="app_badge_rebook_title">1-Click Rebooking</div>
+              <div class="text-[11px] text-slate-400" data-i18n="app_badge_rebook_sub">Zero repeated typing</div>
+            </div>
+          </div>
+
+          <!-- Store Status: Coming Soon Badges -->
+          <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+            <div class="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white/10 border border-white/20 flex items-center gap-3">
+              <i class="fa-brands fa-google-play text-2xl text-emerald-400"></i>
+              <div class="text-left">
+                <div class="text-[9px] uppercase tracking-wider text-amber-300 font-bold" data-i18n="app_store_coming_soon">Coming Soon</div>
+                <div class="text-xs font-black text-white">Google Play Store</div>
+              </div>
+              <span class="ml-2 bg-amber-400/20 text-amber-300 text-[9px] font-bold px-2 py-0.5 rounded-full border border-amber-400/30">IN REVIEW</span>
+            </div>
+
+            <div class="w-full sm:w-auto px-5 py-3 rounded-2xl bg-white/10 border border-white/20 flex items-center gap-3">
+              <i class="fa-brands fa-apple text-2xl text-slate-200"></i>
+              <div class="text-left">
+                <div class="text-[9px] uppercase tracking-wider text-amber-300 font-bold" data-i18n="app_store_coming_soon">Coming Soon</div>
+                <div class="text-xs font-black text-white">Apple App Store</div>
+              </div>
+              <span class="ml-2 bg-amber-400/20 text-amber-300 text-[9px] font-bold px-2 py-0.5 rounded-full border border-amber-400/30">IN REVIEW</span>
+            </div>
+          </div>
+
+          <div class="text-xs text-slate-400 flex items-center justify-center lg:justify-start gap-2 pt-2">
+            <i class="fa-solid fa-shield-check text-emerald-400"></i>
+            <span data-i18n="app_compat_text">Compatible with all Android and iOS smartphones • Lightweight & 100% Free</span>
+          </div>
+
+        </div>
+
+        <!-- Right: Dynamic Interactive Smartphone Frame -->
+        <div class="lg:col-span-5 flex justify-center">
+          
+          <div class="w-full max-w-sm rounded-[44px] bg-slate-950 p-3.5 shadow-2xl border-4 border-slate-700 shadow-cyan-500/20 relative">
+            
+            <!-- Dynamic Island Notch -->
+            <div class="w-32 h-4 bg-slate-900 rounded-full mx-auto mb-2 flex items-center justify-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-slate-800"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-cyan-900/60 border border-cyan-400/40"></div>
+            </div>
+
+            <!-- Screen Container -->
+            <div class="rounded-[32px] bg-slate-900 overflow-hidden text-slate-100 border border-white/10">
+              
+              <!-- App Top Bar -->
+              <div class="bg-brand-navy px-4 pt-3 pb-3 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-brand-blue to-cyan-400 flex items-center justify-center text-white text-xs font-bold shadow">
+                    <i class="fa-solid fa-taxi"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-extrabold text-white" data-i18n="sim_title">Daily Cab</div>
+                    <div class="text-[9px] text-brand-cyan" data-i18n="sim_sub">Active Passenger App</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                  <span>9:41</span>
+                  <i class="fa-solid fa-wifi"></i>
+                  <i class="fa-solid fa-battery-full text-emerald-400"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Simulator Tabs -->
+              <div class="bg-slate-800/80 p-1 flex border-b border-white/10 text-[11px] font-semibold text-slate-300">
+                <button type="button" id="app-tab-history" onclick="switchAppTab('history')" class="app-screen-tab flex-1 py-1.5 rounded-lg text-center transition bg-brand-blue text-white shadow font-bold" data-i18n="sim_tab_history">
+                  <i class="fa-solid fa-clock-rotate-left mr-1"></i> Ride History
+                </button>
+                <button type="button" id="app-tab-tracking" onclick="switchAppTab('tracking')" class="app-screen-tab flex-1 py-1.5 rounded-lg text-center transition hover:text-white" data-i18n="sim_tab_live">
+                  <i class="fa-solid fa-map-pin mr-1"></i> Live Ride
+                </button>
+                <button type="button" id="app-tab-book" onclick="switchAppTab('book')" class="app-screen-tab flex-1 py-1.5 rounded-lg text-center transition hover:text-white" data-i18n="sim_tab_book">
+                  <i class="fa-solid fa-plus mr-1"></i> Quick Book
+                </button>
+              </div>
+
+              <!-- Screen 1: Ride History Screen -->
+              <div id="screen-history" class="p-4 space-y-3 bg-slate-900 min-h-[380px] max-h-[440px] overflow-y-auto">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <div class="text-xs font-bold text-white" data-i18n="sim_hist_heading">Your Past Journeys</div>
+                    <div class="text-[10px] text-slate-400" data-i18n="sim_hist_sub">Showing last 3 completed trips</div>
+                  </div>
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold" data-i18n="sim_hist_badge">
+                    Verified
+                  </span>
+                </div>
+
+                <!-- Card 1 -->
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:border-brand-cyan/40 transition">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="text-[11px] font-extrabold text-white">Shrirampur ➔ Pune (Viman Nagar)</div>
+                      <div class="text-[10px] text-slate-400">14 Nov 2026 • 07:30 AM</div>
+                    </div>
+                    <span class="text-xs font-black text-brand-cyan">₹550</span>
+                  </div>
+
+                  <div class="flex items-center justify-between text-[10px] text-slate-300 pt-1 border-t border-white/5">
+                    <span class="flex items-center gap-1">
+                      <i class="fa-solid fa-circle-check text-emerald-400"></i> Seat Sharing (Seat #2)
+                    </span>
+                    <span class="text-slate-400">Driver: Santosh (4.9★)</span>
+                  </div>
+
+                  <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="showInvoiceModal('DPC-84920', 'Shrirampur ➔ Pune', '₹550', 'Seat Sharing', '14 Nov 2026')" class="flex-1 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-[10px] font-semibold text-slate-200 text-center transition">
+                      <span data-i18n="sim_btn_invoice"><i class="fa-solid fa-download mr-1"></i> Invoice</span>
+                    </button>
+                    <a href="index.html#booking-section" class="flex-1 py-1.5 rounded-lg bg-brand-blue hover:bg-sky-600 text-[10px] font-bold text-white text-center transition">
+                      <span data-i18n="sim_btn_rebook"><i class="fa-solid fa-arrow-rotate-right mr-1"></i> Rebook</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:border-brand-cyan/40 transition">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="text-[11px] font-extrabold text-white">Pune (Swargate) ➔ Shrirampur</div>
+                      <div class="text-[10px] text-slate-400">08 Nov 2026 • 04:15 PM</div>
+                    </div>
+                    <span class="text-xs font-black text-brand-cyan">₹2,499</span>
+                  </div>
+
+                  <div class="flex items-center justify-between text-[10px] text-slate-300 pt-1 border-t border-white/5">
+                    <span class="flex items-center gap-1">
+                      <i class="fa-solid fa-circle-check text-emerald-400"></i> Dedicated Sedan (Dzire White)
+                    </span>
+                    <span class="text-slate-400">Driver: Ganesh (5.0★)</span>
+                  </div>
+
+                  <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="showInvoiceModal('DPC-83112', 'Pune ➔ Shrirampur', '₹2,499', 'Dedicated Sedan', '08 Nov 2026')" class="flex-1 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-[10px] font-semibold text-slate-200 text-center transition">
+                      <span data-i18n="sim_btn_invoice"><i class="fa-solid fa-download mr-1"></i> Invoice</span>
+                    </button>
+                    <a href="index.html#booking-section" class="flex-1 py-1.5 rounded-lg bg-brand-blue hover:bg-sky-600 text-[10px] font-bold text-white text-center transition">
+                      <span data-i18n="sim_btn_rebook"><i class="fa-solid fa-arrow-rotate-right mr-1"></i> Rebook</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/10 space-y-2 hover:border-brand-cyan/40 transition">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="text-[11px] font-extrabold text-white">Shrirampur ➔ Pune Airport (PNQ)</div>
+                      <div class="text-[10px] text-slate-400">01 Nov 2026 • 02:00 AM</div>
+                    </div>
+                    <span class="text-xs font-black text-brand-cyan">₹2,600</span>
+                  </div>
+
+                  <div class="flex items-center justify-between text-[10px] text-slate-300 pt-1 border-t border-white/5">
+                    <span class="flex items-center gap-1">
+                      <i class="fa-solid fa-circle-check text-emerald-400"></i> Airport Transfer
+                    </span>
+                    <span class="text-slate-400">Driver: Sachin (4.8★)</span>
+                  </div>
+
+                  <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="showInvoiceModal('DPC-81094', 'Shrirampur ➔ Pune Airport', '₹2,600', 'Airport Drop', '01 Nov 2026')" class="flex-1 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-[10px] font-semibold text-slate-200 text-center transition">
+                      <span data-i18n="sim_btn_invoice"><i class="fa-solid fa-download mr-1"></i> Invoice</span>
+                    </button>
+                    <a href="index.html#booking-section" class="flex-1 py-1.5 rounded-lg bg-brand-blue hover:bg-sky-600 text-[10px] font-bold text-white text-center transition">
+                      <span data-i18n="sim_btn_rebook"><i class="fa-solid fa-arrow-rotate-right mr-1"></i> Rebook</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Screen 2: Live Tracking -->
+              <div id="screen-tracking" class="hidden p-4 space-y-3 bg-slate-900 min-h-[380px]">
+                <div class="relative h-36 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-950 border border-sky-400/30 overflow-hidden flex flex-col justify-between p-3">
+                  <div class="flex justify-between items-center z-10">
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[9px] font-bold flex items-center gap-1" data-i18n="sim_track_badge">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Tracking
+                    </span>
+                    <span class="text-[10px] font-black text-cyan-300" data-i18n="sim_track_eta">ETA: 18 mins</span>
+                  </div>
+
+                  <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                    <i class="fa-solid fa-map-location text-7xl text-sky-500"></i>
+                  </div>
+
+                  <div class="relative z-10 bg-slate-900/90 backdrop-blur-md p-2 rounded-xl text-[10px] flex items-center justify-between border border-white/10">
+                    <div>
+                      <div class="font-bold text-white" data-i18n="sim_track_status">Approaching Sangamner Bypass</div>
+                      <div class="text-slate-400 text-[9px]" data-i18n="sim_track_speed">Speed: 68 km/h • On Schedule</div>
+                    </div>
+                    <span class="bg-cyan-500 text-slate-950 font-black text-[9px] px-1.5 py-0.5 rounded">OTP: 7482</span>
+                  </div>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-sm">
+                      SS
+                    </div>
+                    <div>
+                      <div class="font-bold text-xs text-white">Santosh Shinde</div>
+                      <div class="text-[10px] text-slate-400">Swift Dzire (White) • MH 17 AB 1234</div>
+                    </div>
+                  </div>
+                  <a href="tel:9529657004" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs shadow-md">
+                    <i class="fa-solid fa-phone"></i>
+                  </a>
+                </div>
+
+                <div class="bg-sky-950/40 border border-sky-400/20 rounded-xl p-2.5 text-[10px] text-sky-200 flex items-center gap-2">
+                  <i class="fa-solid fa-shield-halved text-brand-cyan"></i>
+                  <span data-i18n="sim_track_safety">Trip insured and GPS-monitored by Daily Pune Cab safety desk.</span>
+                </div>
+              </div>
+
+              <!-- Screen 3: Quick Book -->
+              <div id="screen-book" class="hidden p-4 space-y-3 bg-slate-900 min-h-[380px]">
+                <div class="text-xs font-bold text-white mb-1" data-i18n="sim_book_heading">Fast 1-Tap Booking</div>
+
+                <div class="space-y-2">
+                  <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] cursor-pointer hover:border-brand-cyan transition">
+                    <div class="font-bold text-cyan-300">Shrirampur ➔ Pune City</div>
+                    <div class="text-[10px] text-slate-400">Via Sangamner / Alephata • 4.5 hrs</div>
+                    <div class="text-[10px] text-emerald-400 font-bold mt-1">Starting ₹550 / seat</div>
+                  </div>
+
+                  <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] cursor-pointer hover:border-brand-cyan transition">
+                    <div class="font-bold text-cyan-300">Shrirampur ➔ Ahilyanagar ➔ Pune</div>
+                    <div class="text-[10px] text-slate-400">Via Rahuri & Wagholi • East Pune Drop</div>
+                    <div class="text-[10px] text-emerald-400 font-bold mt-1">Starting ₹550 / seat</div>
+                  </div>
+
+                  <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] cursor-pointer hover:border-brand-cyan transition">
+                    <div class="font-bold text-cyan-300">Shrirampur ➔ Pune Airport (PNQ)</div>
+                    <div class="text-[10px] text-slate-400">Direct flight drop • Doorstep pickup</div>
+                    <div class="text-[10px] text-emerald-400 font-bold mt-1">Dedicated Sedan ₹2,600</div>
+                  </div>
+                </div>
+
+                <a href="index.html#booking-section" class="block w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-blue to-cyan-500 text-white font-bold text-xs text-center shadow-md" data-i18n="sim_book_btn">
+                  Open Booking Form
+                </a>
+              </div>
+
+              <!-- Bottom Nav -->
+              <div class="bg-slate-950 px-6 py-2 border-t border-white/10 flex justify-between items-center text-slate-400 text-xs">
+                <button type="button" onclick="switchAppTab('history')" class="flex flex-col items-center hover:text-brand-cyan transition">
+                  <i class="fa-solid fa-clock-rotate-left text-sm"></i>
+                  <span class="text-[9px] mt-0.5">History</span>
+                </button>
+                <button type="button" onclick="switchAppTab('tracking')" class="flex flex-col items-center hover:text-brand-cyan transition">
+                  <i class="fa-solid fa-map-location-dot text-sm"></i>
+                  <span class="text-[9px] mt-0.5">Live</span>
+                </button>
+                <button type="button" onclick="switchAppTab('book')" class="flex flex-col items-center hover:text-brand-cyan transition">
+                  <i class="fa-solid fa-calendar-plus text-sm"></i>
+                  <span class="text-[9px] mt-0.5">Book</span>
+                </button>
+                <button type="button" onclick="alert('Daily Pune Cab Helpline: 9529657004')" class="flex flex-col items-center hover:text-brand-cyan transition">
+                  <i class="fa-solid fa-headset text-sm"></i>
+                  <span class="text-[9px] mt-0.5">Help</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed App Features & Benefits Section -->
+  <section id="features" class="py-24 bg-slate-950 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 mb-3" data-i18n="app_feat_pill">
+          <i class="fa-solid fa-layer-group"></i> Exclusive In-App Benefits
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white" data-i18n="app_feat_title">
+          Why Thousands of Commuters Love the App
+        </h2>
+        <p class="mt-3 text-slate-400 text-sm sm:text-base" data-i18n="app_feat_desc">
+          Built specifically for daily commuters between Shrirampur, Sangamner, Ahilyanagar, and Pune.
+        </p>
+      </div>
+
+      <!-- 6 Key Pillars Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1: Ride History & Invoices -->
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-cyan/50 hover:bg-white/10 transition flex flex-col justify-between group">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-blue to-cyan-400 flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3" data-i18n="app_p1_title">1. Complete Ride History</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="app_p1_desc">
+              Access your full journey archives. Check travel timestamps, exact pickup points, drivers, vehicle numbers, and route taken anytime.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-2">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p1_b1">Instant PDF invoice downloads</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p1_b2">Corporate GST invoice support</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p1_b3">Full financial records of your commute</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-semibold text-brand-cyan" data-i18n="app_p1_foot">
+            No paper receipts lost ever again
+          </div>
+        </div>
+
+        <!-- Pillar 2: 1-Tap Hassle-Free Booking -->
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-cyan/50 hover:bg-white/10 transition flex flex-col justify-between group">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3" data-i18n="app_p2_title">2. 1-Tap Hassle-Free Booking</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="app_p2_desc">
+              Book a seat or entire private cab in just 3 taps. Save your Home (Shrirampur) and Office (Pune) locations for instant single-tap rebooking.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-2">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p2_b1">Immediate seat allocation</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p2_b2">Transparent fare calculation upfront</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p2_b3">Real-time seat inventory</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-semibold text-brand-cyan" data-i18n="app_p2_foot">
+            Book in less than 15 seconds
+          </div>
+        </div>
+
+        <!-- Pillar 3: Live GPS Cab Tracking -->
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-cyan/50 hover:bg-white/10 transition flex flex-col justify-between group">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3" data-i18n="app_p3_title">3. Real-Time Live Tracking</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="app_p3_desc">
+              Watch your assigned car arrive live on the map. Know the exact minutes remaining before your cab reaches your pickup spot.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-2">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p3_b1">Accurate arrival countdown (ETA)</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p3_b2">Direct in-app call to driver</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p3_b3">Verified OTP ride verification</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-semibold text-brand-cyan" data-i18n="app_p3_foot">
+            Zero guessing at bus stands
+          </div>
+        </div>
+
+        <!-- Pillar 4: Passenger Safety & 24/7 SOS -->
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-cyan/50 hover:bg-white/10 transition flex flex-col justify-between group">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-cyan to-blue-500 flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3" data-i18n="app_p4_title">4. Safety & Live Share</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="app_p4_desc">
+              Travel with complete peace of mind. Share your live ride tracking link with family or colleagues so they know your exact location throughout the journey.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-2">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p4_b1">1-Tap Emergency SOS button</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p4_b2">Verified commercial drivers with ID</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p4_b3">24/7 central control desk monitoring</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-semibold text-brand-cyan" data-i18n="app_p4_foot">
+            Safe for solo women & late night travel
+          </div>
+        </div>
+
+        <!-- Pillar 5: Daily Commuter Passes -->
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-cyan/50 hover:bg-white/10 transition flex flex-col justify-between group">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3" data-i18n="app_p5_title">5. Commuter Passes & Discounts</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="app_p5_desc">
+              Regular traveler between Shrirampur and Pune? Purchase monthly or 10-trip commuter passes inside the app and save up to 25% on every ride.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-2">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p5_b1">Fixed discounted per-seat fare</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p5_b2">Priority seat reservation window</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p5_b3">Transferrable family passes</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-semibold text-brand-cyan" data-i18n="app_p5_foot">
+            Maximum savings for regular commuters
+          </div>
+        </div>
+
+        <!-- Pillar 6: In-App Payments & Invoicing -->
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-cyan/50 hover:bg-white/10 transition flex flex-col justify-between group">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-400 to-sky-600 flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3" data-i18n="app_p6_title">6. Flexible Digital Payments</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="app_p6_desc">
+              Pay the way you want. Support for Google Pay, PhonePe, Paytm, UPI, Net Banking, Credit/Debit cards, or Cash to driver upon arrival.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-2">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p6_b1">Transparent fare without surge pricing</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p6_b2">Digital wallet cashback rewards</span></li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="app_p6_b3">Zero transaction convenience fee</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs font-semibold text-brand-cyan" data-i18n="app_p6_foot">
+            100% cashless & transparent
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-24 bg-brand-navy relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-500/20 text-brand-cyanLight border border-sky-400/30 mb-3" data-i18n="app_how_pill">
+          <i class="fa-solid fa-list-check"></i> Simple Steps
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white" data-i18n="app_how_title">
+          How To Use The Daily Pune Cab App
+        </h2>
+        <p class="mt-3 text-slate-400 text-sm" data-i18n="app_how_desc">
+          Getting started takes under two minutes. Follow these 4 easy steps:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        
+        <div class="p-6 rounded-3xl bg-slate-900 border border-white/10 text-center relative">
+          <div class="w-12 h-12 rounded-full bg-brand-cyan text-brand-navy font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-lg shadow-cyan-500/30">
+            1
+          </div>
+          <h4 class="font-display font-bold text-base text-white mb-2" data-i18n="app_step1_title">Install & Sign In</h4>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="app_step1_desc">
+            Download the app on Google Play or iOS. Log in with your 10-digit mobile number and instant OTP.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-900 border border-white/10 text-center relative">
+          <div class="w-12 h-12 rounded-full bg-brand-blue text-white font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/30">
+            2
+          </div>
+          <h4 class="font-display font-bold text-base text-white mb-2" data-i18n="app_step2_title">Select Route & Seats</h4>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="app_step2_desc">
+            Choose Shrirampur ⇄ Pune (via Sangamner or Ahilyanagar). Pick Seat Sharing or Private Cab.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-900 border border-white/10 text-center relative">
+          <div class="w-12 h-12 rounded-full bg-cyan-500 text-slate-950 font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-lg shadow-cyan-500/30">
+            3
+          </div>
+          <h4 class="font-display font-bold text-base text-white mb-2" data-i18n="app_step3_title">Track Your Cab Live</h4>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="app_step3_desc">
+            Get driver contact, vehicle registration number, and watch the cab reach your pickup point on live GPS.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-900 border border-white/10 text-center relative">
+          <div class="w-12 h-12 rounded-full bg-emerald-500 text-white font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/30">
+            4
+          </div>
+          <h4 class="font-display font-bold text-base text-white mb-2" data-i18n="app_step4_title">Ride & Auto-Invoice</h4>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="app_step4_desc">
+            Travel in AC comfort. Your trip automatically saves to <strong>Ride History</strong> with instant invoice download.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Download & QR Code Section -->
+  <section id="download" class="py-24 bg-gradient-to-br from-brand-navyDark via-brand-navy to-slate-900 border-t border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="bg-gradient-to-r from-brand-blue/30 to-cyan-500/20 border-2 border-brand-cyan/40 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-8 space-y-4">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30" data-i18n="app_dl_pill">
+              <i class="fa-solid fa-mobile-button"></i> Instant Access
+            </div>
+            <h3 class="font-display font-black text-3xl sm:text-4xl text-white" data-i18n="app_dl_title">
+              Download Daily Pune Cab App Today
+            </h3>
+            <p class="text-slate-300 text-sm max-w-xl leading-relaxed" data-i18n="app_dl_desc">
+              Scan the QR code or enter your mobile number below to receive the direct download link on WhatsApp immediately.
+            </p>
+
+            <!-- Pre-Registration / Notify When Live Form -->
+            <form onsubmit="handleNotifySubmit(event, 'app-page-notify-input', 'app-page-notify-success')" class="pt-2 space-y-2 max-w-lg">
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input type="text" id="app-page-notify-input" required placeholder="Enter Mobile Number or Email ID" data-i18n-placeholder="app_notify_placeholder" class="flex-1 text-xs bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-cyan focus:outline-none">
+                <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-blue-500 hover:from-cyan-400 hover:to-blue-600 text-brand-navy font-black text-xs uppercase tracking-wider transition whitespace-nowrap flex items-center justify-center gap-2 shadow-lg" data-i18n="app_notify_btn">
+                  <i class="fa-solid fa-bell"></i> Notify Me When Live
+                </button>
+              </div>
+              <div id="app-page-notify-success" class="hidden"></div>
+            </form>
+
+            <div class="flex items-center gap-4 pt-4 text-xs text-slate-400">
+              <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-check text-emerald-400"></i> <span data-i18n="app_dl_feat1">Free to download</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-check text-emerald-400"></i> Android 6.0+
+              </div>
+              <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-check text-emerald-400"></i> iOS 13+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual QR Code Simulation -->
+          <div class="lg:col-span-4 flex flex-col items-center justify-center text-center">
+            <div class="bg-white p-4 rounded-3xl shadow-2xl border-4 border-brand-cyan">
+              <!-- Visual high-contrast QR Mockup -->
+              <div class="w-44 h-44 bg-slate-950 rounded-2xl flex flex-col items-center justify-center p-3 relative overflow-hidden">
+                <div class="grid grid-cols-5 gap-1.5 opacity-90 text-brand-cyan">
+                  <i class="fa-solid fa-qrcode text-8xl text-white col-span-5 text-center"></i>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 text-xs font-bold text-white flex items-center gap-1" data-i18n="app_dl_scan_text">
+              <i class="fa-solid fa-camera text-brand-cyan"></i> Scan with Phone Camera
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Invoice Modal Simulator -->
+  <div id="invoice-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white text-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeInvoiceModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
+        <div class="w-8 h-8 rounded-lg bg-brand-blue text-white flex items-center justify-center font-bold text-sm">
+          <i class="fa-solid fa-receipt"></i>
+        </div>
+        <div>
+          <div class="font-display font-bold text-sm text-brand-navy" data-i18n="inv_modal_title">Daily Pune Cab E-Receipt</div>
+          <div class="text-[10px] text-slate-500" data-i18n="inv_modal_sub">Official GST Compliant Travel Bill</div>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-xs text-slate-600 mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+        <div class="flex justify-between">
+          <span class="text-slate-400" data-i18n="inv_lbl_id">Invoice ID:</span>
+          <strong id="inv-id" class="text-brand-navy">DPC-84920</strong>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400" data-i18n="inv_lbl_date">Date:</span>
+          <span id="inv-date">14 Nov 2026</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400" data-i18n="inv_lbl_route">Route:</span>
+          <strong id="inv-route">Shrirampur ➔ Pune</strong>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400" data-i18n="inv_lbl_type">Ride Type:</span>
+          <span id="inv-type">Seat Sharing</span>
+        </div>
+        <div class="flex justify-between pt-2 border-t border-slate-200">
+          <span class="font-bold text-brand-navy" data-i18n="inv_lbl_total">Total Paid:</span>
+          <strong id="inv-amount" class="text-base text-brand-blue">₹550</strong>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="alert('Downloading official PDF receipt for your corporate claim...'); closeInvoiceModal();" class="flex-1 py-3 rounded-xl bg-brand-blue text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-sky-600 transition" data-i18n="inv_btn_download">
+          <i class="fa-solid fa-file-pdf"></i> Download PDF
+        </button>
+        <button onclick="closeInvoiceModal()" class="py-3 px-4 rounded-xl bg-slate-100 text-slate-600 font-semibold text-xs hover:bg-slate-200 transition" data-i18n="inv_btn_close">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-brand-navyDark text-slate-400 text-xs py-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-white/10">
+        
+        <div class="space-y-3">
+          <div class="font-display font-black text-xl text-white tracking-tight flex items-center gap-1.5">
+            DAILY CAB <span class="text-xs uppercase px-2 py-0.5 rounded-full bg-brand-cyan text-brand-navy font-black">APP</span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="footer_tagline">
+            Your Journey. Our Commitment. Providing top quality daily seat sharing and private cab travel between Shrirampur and Pune with complete mobile app tracking.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3" data-i18n="footer_quick_nav">Quick Navigation</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="index.html" class="hover:text-white transition">Main Cab Website</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition">Seat Sharing & Private Cabs</a></li>
+            <li><a href="index.html#routes" class="hover:text-white transition">Shrirampur ⇄ Pune Routes</a></li>
+            <li><a href="index.html#fares" class="hover:text-white transition">Fare Guide</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3" data-i18n="footer_app_features">App Features</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="#features" class="hover:text-white transition">Full Ride History Log</a></li>
+            <li><a href="#features" class="hover:text-white transition">Instant GST Invoice Download</a></li>
+            <li><a href="#features" class="hover:text-white transition">Real-Time Vehicle Tracking</a></li>
+            <li><a href="#features" class="hover:text-white transition">1-Tap Rebooking</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3" data-i18n="footer_helpline">Helpline & Dispatch</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><i class="fa-solid fa-phone text-brand-cyan mr-1.5"></i> <a href="tel:9529657004" class="hover:text-white">9529657004</a></li>
+            <li><i class="fa-brands fa-whatsapp text-emerald-400 mr-1.5"></i> <a href="https://wa.me/919529657004" target="_blank" class="hover:text-white">+91 9529657004</a></li>
+            <li><i class="fa-solid fa-globe text-brand-cyan mr-1.5"></i> <a href="https://dailycab.co.in" target="_blank" class="hover:text-white">https://dailycab.co.in</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-slate-500">
+        <div>
+          &copy; <span id="current-year"></span> Daily Pune Cab. <span data-i18n="footer_rights">All Rights Reserved.</span>
+        </div>
+        <div class="text-center sm:text-right">
+          <span data-i18n="footer_app_disclaimer">App compatible with Android and iOS devices.</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="translations.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function showInvoiceModal(id, route, amount, type, date) {
+      document.getElementById('inv-id').textContent = id;
+      document.getElementById('inv-route').textContent = route;
+      document.getElementById('inv-amount').textContent = amount;
+      document.getElementById('inv-type').textContent = type;
+      document.getElementById('inv-date').textContent = date;
+      document.getElementById('invoice-modal').classList.remove('hidden');
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoice-modal').classList.add('hidden');
+    }
+
+    function handleSendAppLink(e) {
+      e.preventDefault();
+      const phone = document.getElementById('app-phone-input').value.trim();
+      const text = encodeURIComponent(`Hello Daily Pune Cab, please send me the mobile app download link for phone: ${phone}`);
+      window.open(`https://wa.me/919529657004?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
