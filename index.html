@@ -405,69 +405,144 @@
     </div>
   </section>
 
-  <!-- Moving Highway Transit Banner & Animated Cab Dynamics (Compatibility Focused) -->
-  <section id="highway-movement-banner" class="relative bg-gradient-to-b from-brand-navyDark via-slate-950 to-brand-navy py-12 text-white overflow-hidden border-y border-sky-500/20 shadow-2xl">
+  <!-- Moving Highway Transit Banner & Generic Multi-Route Visualizer -->
+  <section id="highway-movement-banner" class="relative bg-gradient-to-b from-brand-navyDark via-slate-950 to-brand-navy py-10 sm:py-14 text-white overflow-hidden border-y border-sky-500/20 shadow-2xl">
     
-    <!-- Top HUD & Direction Switcher Bar -->
+    <!-- Top HUD Header & Controls -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 relative z-20">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 mb-2" data-i18n="hud_banner_pill">
-            <i class="fa-solid fa-road text-brand-cyan mr-1.5"></i> LIVE HIGHWAY TRANSIT
+            <i class="fa-solid fa-route text-brand-cyan mr-1.5"></i> ALL ROUTES TRANSIT VISUALIZER
           </div>
           <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight" data-i18n="hud_banner_title">
-            Expressway Route in Motion
+            Interactive Route & Highway Transit
           </h2>
           <p class="text-xs sm:text-sm text-slate-300 max-w-xl mt-1" data-i18n="hud_banner_desc">
-            Experience smooth, air-conditioned expressway travel between Shrirampur and Pune. Watch the cab cruise past real highway milestones dynamically as you scroll.
+            Select any Daily Cab corridor below to preview the route, real highway waypoints, live cruising telemetry, and travel time across Maharashtra.
           </p>
         </div>
 
-        <!-- Direction Toggle & Live Telemetry Badges -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <!-- Interactive Route Switcher Buttons -->
-          <div class="flex items-center bg-white/10 p-1 rounded-full border border-white/15 text-xs">
-            <button type="button" id="highway-btn-fwd" onclick="setHighwayDirection('fwd')" class="px-3.5 py-1.5 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition" data-i18n="hud_btn_fwd">
-              Shrirampur ➔ Pune (NH 60)
-            </button>
-            <button type="button" id="highway-btn-rev" onclick="setHighwayDirection('rev')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-transparent transition" data-i18n="hud_btn_rev">
-              Pune ➔ Shrirampur (Return)
-            </button>
-          </div>
+        <!-- Direction & Play/Pause Controls -->
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Play / Pause Toggle -->
+          <button type="button" id="highway-btn-playpause" onclick="toggleHighwayCruise()" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center gap-2 transition shadow-sm">
+            <i id="highway-playpause-icon" class="fa-solid fa-pause text-brand-cyan text-xs"></i>
+            <span id="highway-playpause-label" data-i18n="hud_btn_pause">Pause</span>
+          </button>
 
-          <!-- Quick Telemetry Badges -->
-          <div class="hidden lg:flex items-center gap-2 text-xs font-medium">
-            <span class="px-2.5 py-1 rounded-lg bg-sky-950/80 border border-sky-400/30 text-sky-300 flex items-center gap-1" data-i18n="hud_stat_speed">
-              <i class="fa-solid fa-gauge-high text-brand-cyan mr-1"></i> Cruising: 72 km/h
-            </span>
-            <span class="px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-400/30 text-emerald-300 flex items-center gap-1" data-i18n="hud_stat_gps">
-              <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> Live GPS Monitored
-            </span>
+          <!-- Direction Switcher -->
+          <div class="flex items-center bg-white/10 p-1 rounded-full border border-white/15 text-xs">
+            <button type="button" id="highway-btn-fwd" onclick="setHighwayDirection('fwd')" class="px-3 py-1 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition">
+              <i class="fa-solid fa-arrow-right mr-1"></i> <span id="highway-lbl-fwd">Forward</span>
+            </button>
+            <button type="button" id="highway-btn-rev" onclick="setHighwayDirection('rev')" class="px-3 py-1 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-transparent transition">
+              <i class="fa-solid fa-arrow-left mr-1"></i> <span id="highway-lbl-rev">Return</span>
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Route Selector Chips (Mobile Touch Scrollable) -->
+      <div class="mt-6 pt-4 border-t border-white/10">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-map-location-dot text-brand-cyan"></i> Select Active Travel Corridor:
+          </span>
+          <span class="text-[10px] text-cyan-300 hidden sm:inline-block font-medium">Click any route or milestone to inspect</span>
+        </div>
+        <div class="route-chips-scroll flex items-center gap-2 pb-2">
+          <button type="button" onclick="switchHighwayRoute('route_sangamner')" id="btn-route-sangamner" class="route-corridor-btn active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-cyan text-brand-navy border border-brand-cyan shadow-md shadow-cyan-500/20 transition flex items-center gap-2">
+            <i class="fa-solid fa-road text-xs"></i>
+            <span data-i18n="hud_tab_sangamner">Sangamner (NH 60)</span>
+            <span class="text-[10px] bg-brand-navy/30 px-1.5 py-0.5 rounded font-mono">205 km</span>
+          </button>
+
+          <button type="button" onclick="switchHighwayRoute('route_ahilyanagar')" id="btn-route-ahilyanagar" class="route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2">
+            <i class="fa-solid fa-city text-xs text-sky-400"></i>
+            <span data-i18n="hud_tab_ahilyanagar">Ahilyanagar (SH 27)</span>
+            <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">195 km</span>
+          </button>
+
+          <button type="button" onclick="switchHighwayRoute('route_airport')" id="btn-route-airport" class="route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2">
+            <i class="fa-solid fa-plane-departure text-xs text-emerald-400"></i>
+            <span data-i18n="hud_tab_airport">Airport & Hinjawadi</span>
+            <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">215 km</span>
+          </button>
+
+          <button type="button" onclick="switchHighwayRoute('route_return')" id="btn-route-return" class="route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left-long text-xs text-amber-400"></i>
+            <span data-i18n="hud_tab_return">Pune ➔ Shrirampur (Return)</span>
+            <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">Daily</span>
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Active Route Telemetry HUD Strip -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 relative z-20">
-      <div class="bg-white/5 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
-        <div class="flex items-center gap-2">
-          <span class="text-slate-400 font-semibold" data-i18n="hud_lbl_progress">Highway Trip Progress:</span>
-          <span id="hud-odometer-val" class="font-mono font-black text-brand-cyan text-sm sm:text-base px-2 py-0.5 rounded bg-brand-navy border border-brand-cyan/40">
-            0 km / 205 km
-          </span>
+      <div class="bg-white/5 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 border border-white/10 shadow-lg">
+        
+        <!-- Top Row: Route Title & Corridor Badge -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10 mb-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span id="hud-route-code" class="px-2 py-0.5 rounded bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/40 font-mono font-bold text-[11px]">
+              NH 60 EXPRESSWAY
+            </span>
+            <h3 id="hud-active-route-name" class="font-bold text-white text-sm sm:text-base">
+              Shrirampur ⇄ Sangamner ⇄ Pune
+            </h3>
+          </div>
+          <p id="hud-active-via-text" class="text-xs text-slate-300 italic">
+            Via Loni, Sangamner, Alephata, Narayangaon, Chakan
+          </p>
         </div>
 
-        <div class="flex items-center gap-2">
-          <span class="text-slate-400 font-semibold" data-i18n="hud_lbl_next_stop">Approaching Landmark:</span>
-          <span id="hud-next-stop-val" class="font-bold text-white px-2.5 py-0.5 rounded bg-sky-500/20 border border-sky-400/30 text-sky-200">
-            Shrirampur Departure (NH 60)
-          </span>
+        <!-- Middle Row: Telemetry Gauges -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <!-- Stat 1: Odometer -->
+          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10">
+            <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_lbl_progress">Trip Progress</div>
+            <div id="hud-odometer-val" class="font-mono font-black text-brand-cyan text-sm sm:text-base mt-0.5">
+              0 km / 205 km
+            </div>
+          </div>
+
+          <!-- Stat 2: Approaching Landmark -->
+          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10">
+            <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_lbl_next_stop">Approaching Landmark</div>
+            <div id="hud-next-stop-val" class="font-bold text-sky-200 text-xs sm:text-sm mt-0.5 truncate">
+              Shrirampur Departure
+            </div>
+          </div>
+
+          <!-- Stat 3: Est Duration -->
+          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10">
+            <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_stat_est_time">Est. Duration</div>
+            <div id="hud-est-duration-val" class="font-bold text-emerald-300 text-xs sm:text-sm mt-0.5">
+              <i class="fa-solid fa-clock text-xs mr-1 text-emerald-400"></i> ~4h 15m
+            </div>
+          </div>
+
+          <!-- Stat 4: Seat Fare & Book Action -->
+          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_stat_fare">Seat Sharing</div>
+              <div class="font-black text-brand-cyan text-xs sm:text-sm mt-0.5">
+                From ₹550
+              </div>
+            </div>
+            <button type="button" onclick="bookSelectedRoute()" class="px-2.5 py-1.5 rounded-lg bg-brand-cyan text-brand-navy font-bold text-[11px] hover:bg-cyan-300 transition shadow">
+              <i class="fa-solid fa-ticket mr-1"></i> <span data-i18n="hud_btn_book_route">Book Seat</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-          <div id="hud-trip-progress-bar" class="bg-gradient-to-r from-brand-cyan to-blue-500 h-full rounded-full transition-all duration-300" style="width: 5%;"></div>
+        <!-- Progress Bar Track with Checkpoints -->
+        <div class="mt-4 relative">
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div id="hud-trip-progress-bar" class="bg-gradient-to-r from-brand-cyan via-sky-400 to-blue-500 h-full rounded-full transition-all duration-150" style="width: 5%;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -475,23 +550,23 @@
     <!-- Animated Expressway Road & Parallax Canvas -->
     <div class="relative w-full overflow-hidden select-none">
       
-      <!-- Distant Hills Silhouette & Stars -->
-      <div class="h-16 sm:h-20 w-full relative opacity-60">
+      <!-- Distant Hills Silhouette & Scenery -->
+      <div class="h-14 sm:h-20 w-full relative opacity-60">
         <!-- Mountain ridges silhouette -->
-        <svg class="absolute bottom-0 w-full h-16 sm:h-20 text-slate-900" viewBox="0 0 1200 120" fill="currentColor" preserveAspectRatio="none">
+        <svg class="absolute bottom-0 w-full h-14 sm:h-20 text-slate-900" viewBox="0 0 1200 120" fill="currentColor" preserveAspectRatio="none">
           <path d="M0,120 L0,70 Q120,20 250,60 T600,40 T900,65 T1200,45 L1200,120 Z" opacity="0.4" />
           <path d="M0,120 L0,85 Q160,45 320,80 T750,60 T1100,75 T1200,60 L1200,120 Z" opacity="0.7" />
         </svg>
 
         <!-- Windmills on hills -->
-        <div class="absolute bottom-4 left-[22%] hidden sm:block">
+        <div class="absolute bottom-3 left-[22%] hidden sm:block">
           <div class="w-1 h-7 bg-slate-700 mx-auto"></div>
           <div class="w-6 h-6 -mt-9 -ml-2.5 windmill-blade-anim text-slate-500">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12 L12 2 M12 12 L3 17 M12 12 L21 17" /></svg>
           </div>
         </div>
 
-        <div class="absolute bottom-4 left-[68%] hidden sm:block">
+        <div class="absolute bottom-3 left-[68%] hidden sm:block">
           <div class="w-1 h-9 bg-slate-700 mx-auto"></div>
           <div class="w-7 h-7 -mt-11 -ml-3 windmill-blade-anim text-slate-500" style="animation-duration: 9s;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12 L12 2 M12 12 L3 17 M12 12 L21 17" /></svg>
@@ -499,39 +574,15 @@
         </div>
       </div>
 
-      <!-- Highway Milestone Landmarks Strip -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-1">
-        <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-slate-400">
-          <div class="highway-milestone-marker flex flex-col items-center text-brand-cyan transition-all" data-km="0">
-            <i class="fa-solid fa-flag text-xs mb-0.5"></i>
-            <span>Shrirampur</span>
-            <span class="text-[9px] font-normal text-slate-400">0 km</span>
-          </div>
-          <div class="highway-milestone-marker flex flex-col items-center transition-all" data-km="65">
-            <i class="fa-solid fa-location-dot text-xs mb-0.5"></i>
-            <span>Sangamner</span>
-            <span class="text-[9px] font-normal text-slate-400">65 km</span>
-          </div>
-          <div class="highway-milestone-marker hidden sm:flex flex-col items-center transition-all" data-km="115">
-            <i class="fa-solid fa-location-dot text-xs mb-0.5"></i>
-            <span>Alephata</span>
-            <span class="text-[9px] font-normal text-slate-400">115 km</span>
-          </div>
-          <div class="highway-milestone-marker hidden sm:flex flex-col items-center transition-all" data-km="170">
-            <i class="fa-solid fa-location-dot text-xs mb-0.5"></i>
-            <span>Chakan</span>
-            <span class="text-[9px] font-normal text-slate-400">170 km</span>
-          </div>
-          <div class="highway-milestone-marker flex flex-col items-center transition-all" data-km="205">
-            <i class="fa-solid fa-plane-arrival text-xs mb-0.5"></i>
-            <span>Pune / PNQ</span>
-            <span class="text-[9px] font-normal text-slate-400">205 km</span>
-          </div>
+      <!-- Highway Milestone Landmarks Strip (Dynamic based on selected route) -->
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2">
+        <div id="highway-milestones-track" class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-slate-400">
+          <!-- Generated dynamically by script.js -->
         </div>
       </div>
 
       <!-- 2-Lane Highway Asphalt Road -->
-      <div class="highway-road-surface h-28 sm:h-36 w-full relative border-y-2 border-slate-700/80 shadow-inner">
+      <div id="highway-road-track" class="highway-road-surface h-28 sm:h-36 w-full relative border-y-2 border-slate-700/80 shadow-inner">
         
         <!-- Guardrail / Shoulder with road reflectors -->
         <div class="absolute top-1 left-0 right-0 h-1 bg-gradient-to-r from-amber-400/40 via-cyan-400/50 to-amber-400/40 opacity-70"></div>
@@ -540,73 +591,73 @@
         <!-- Center lane dashed divider with continuous highway motion -->
         <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 highway-dashed-line"></div>
 
-        <!-- The Moving Cab Vehicle with Headlights & Wheels -->
-        <div id="moving-cab-container" class="absolute bottom-4 sm:bottom-6 z-20 transition-all duration-300 ease-out" style="left: 6%;">
+        <!-- The Moving Cab Vehicle with Headlights & Wheels (GPU-accelerated translate3d) -->
+        <div id="moving-cab-container" class="absolute bottom-3 sm:bottom-6 z-20" style="left: 0; transform: translate3d(20px, 0, 0);">
           <div class="cab-suspension-anim">
-            <div id="moving-cab-chassis" class="transition-transform duration-500 ease-in-out">
-              <svg viewBox="0 0 160 55" class="w-32 sm:w-44 h-auto drop-shadow-[0_10px_25px_rgba(6,182,212,0.5)]" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Projected Headlight Cone Ray -->
-  <polygon points="144,35 240,12 240,58 144,45" fill="url(#headlightBeamGrad)" class="headlight-pulse-beam" />
-  
-  <!-- Rear Taillight Glow -->
-  <ellipse cx="6" cy="35" rx="10" ry="6" fill="#ef4444" opacity="0.45" />
+            <div id="moving-cab-chassis" class="transition-transform duration-300 ease-in-out">
+              <svg viewBox="0 0 160 55" class="w-28 sm:w-44 h-auto drop-shadow-[0_10px_25px_rgba(6,182,212,0.5)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Projected Headlight Cone Ray -->
+                <polygon points="144,35 240,12 240,58 144,45" fill="url(#headlightBeamGrad)" class="headlight-pulse-beam" />
+                
+                <!-- Rear Taillight Glow -->
+                <ellipse cx="6" cy="35" rx="10" ry="6" fill="#ef4444" opacity="0.45" />
 
-  <!-- Car Body Chassis (Crisp Aerodynamic White Sedan) -->
-  <path d="M12 36 L22 24 L52 14 L104 14 L132 26 L148 33 L152 40 L146 44 L135 44 C133 38 126 34 118 34 C110 34 103 38 101 44 L55 44 C53 38 46 34 38 34 C30 34 23 38 21 44 L10 44 C6 44 4 41 5 38 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
-  
-  <!-- Tinted Aerodynamic Windows -->
-  <path d="M54 16 L102 16 L126 26 L50 26 Z" fill="#0f172a" />
-  <path d="M56 18 L76 18 L76 25 L53 25 Z" fill="#38bdf8" opacity="0.75" />
-  <path d="M80 18 L100 18 L104 25 L80 25 Z" fill="#38bdf8" opacity="0.75" />
-  <path d="M104 19 L122 26 L107 26 Z" fill="#38bdf8" opacity="0.6" />
-  
-  <!-- Passenger Silhouettes Inside -->
-  <circle cx="70" cy="22" r="2.8" fill="#ffffff" opacity="0.85" />
-  <circle cx="92" cy="22" r="2.8" fill="#ffffff" opacity="0.85" />
-  
-  <!-- Taxi Roof Badge with Cyan Glow -->
-  <rect x="74" y="9" width="22" height="6" rx="2" fill="#0b1528" stroke="#06b6d4" stroke-width="1.2" />
-  <text x="85" y="13.5" font-size="3.5" font-weight="900" fill="#00d2ff" text-anchor="middle" font-family="Outfit, sans-serif">CAB</text>
-  
-  <!-- Electric Cyan & Azure Blue Racing Decals -->
-  <path d="M14 36 L146 36" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" />
-  <path d="M50 39 L110 39" stroke="#0284c7" stroke-width="1" stroke-linecap="round" />
-  
-  <!-- Headlamp Lens & Rear Lamp -->
-  <path d="M147 34 L152 36 L150 40 L145 38 Z" fill="#00d2ff" />
-  <path d="M7 33 L12 34 L11 38 L6 37 Z" fill="#ef4444" />
-  
-  <!-- Front Wheel with Spinning Rim -->
-  <g class="cab-wheel-spin" style="transform-origin: 118px 44px;">
-    <circle cx="118" cy="44" r="9" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
-    <circle cx="118" cy="44" r="5.5" fill="#1e293b" />
-    <line x1="118" y1="39" x2="118" y2="49" stroke="#94a3b8" stroke-width="1.5" />
-    <line x1="113" y1="44" x2="123" y2="44" stroke="#94a3b8" stroke-width="1.5" />
-    <line x1="114.5" y1="40.5" x2="121.5" y2="47.5" stroke="#94a3b8" stroke-width="1.2" />
-    <line x1="114.5" y1="47.5" x2="121.5" y2="40.5" stroke="#94a3b8" stroke-width="1.2" />
-    <circle cx="118" cy="44" r="2.2" fill="#06b6d4" />
-  </g>
-  
-  <!-- Rear Wheel with Spinning Rim -->
-  <g class="cab-wheel-spin" style="transform-origin: 38px 44px;">
-    <circle cx="38" cy="44" r="9" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
-    <circle cx="38" cy="44" r="5.5" fill="#1e293b" />
-    <line x1="38" y1="39" x2="38" y2="49" stroke="#94a3b8" stroke-width="1.5" />
-    <line x1="33" y1="44" x2="43" y2="44" stroke="#94a3b8" stroke-width="1.5" />
-    <line x1="34.5" y1="40.5" x2="41.5" y2="47.5" stroke="#94a3b8" stroke-width="1.2" />
-    <line x1="34.5" y1="47.5" x2="41.5" y2="40.5" stroke="#94a3b8" stroke-width="1.2" />
-    <circle cx="38" cy="44" r="2.2" fill="#06b6d4" />
-  </g>
+                <!-- Car Body Chassis (Crisp Aerodynamic White Sedan) -->
+                <path d="M12 36 L22 24 L52 14 L104 14 L132 26 L148 33 L152 40 L146 44 L135 44 C133 38 126 34 118 34 C110 34 103 38 101 44 L55 44 C53 38 46 34 38 34 C30 34 23 38 21 44 L10 44 C6 44 4 41 5 38 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+                
+                <!-- Tinted Aerodynamic Windows -->
+                <path d="M54 16 L102 16 L126 26 L50 26 Z" fill="#0f172a" />
+                <path d="M56 18 L76 18 L76 25 L53 25 Z" fill="#38bdf8" opacity="0.75" />
+                <path d="M80 18 L100 18 L104 25 L80 25 Z" fill="#38bdf8" opacity="0.75" />
+                <path d="M104 19 L122 26 L107 26 Z" fill="#38bdf8" opacity="0.6" />
+                
+                <!-- Passenger Silhouettes Inside -->
+                <circle cx="70" cy="22" r="2.8" fill="#ffffff" opacity="0.85" />
+                <circle cx="92" cy="22" r="2.8" fill="#ffffff" opacity="0.85" />
+                
+                <!-- Taxi Roof Badge with Cyan Glow -->
+                <rect x="74" y="9" width="22" height="6" rx="2" fill="#0b1528" stroke="#06b6d4" stroke-width="1.2" />
+                <text x="85" y="13.5" font-size="3.5" font-weight="900" fill="#00d2ff" text-anchor="middle" font-family="Outfit, sans-serif">CAB</text>
+                
+                <!-- Electric Cyan & Azure Blue Racing Decals -->
+                <path d="M14 36 L146 36" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M50 39 L110 39" stroke="#0284c7" stroke-width="1" stroke-linecap="round" />
+                
+                <!-- Headlamp Lens & Rear Lamp -->
+                <path d="M147 34 L152 36 L150 40 L145 38 Z" fill="#00d2ff" />
+                <path d="M7 33 L12 34 L11 38 L6 37 Z" fill="#ef4444" />
+                
+                <!-- Front Wheel with Spinning Rim -->
+                <g class="cab-wheel-spin" style="transform-origin: 118px 44px;">
+                  <circle cx="118" cy="44" r="9" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
+                  <circle cx="118" cy="44" r="5.5" fill="#1e293b" />
+                  <line x1="118" y1="39" x2="118" y2="49" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="113" y1="44" x2="123" y2="44" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="114.5" y1="40.5" x2="121.5" y2="47.5" stroke="#94a3b8" stroke-width="1.2" />
+                  <line x1="114.5" y1="47.5" x2="121.5" y2="40.5" stroke="#94a3b8" stroke-width="1.2" />
+                  <circle cx="118" cy="44" r="2.2" fill="#06b6d4" />
+                </g>
+                
+                <!-- Rear Wheel with Spinning Rim -->
+                <g class="cab-wheel-spin" style="transform-origin: 38px 44px;">
+                  <circle cx="38" cy="44" r="9" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
+                  <circle cx="38" cy="44" r="5.5" fill="#1e293b" />
+                  <line x1="38" y1="39" x2="38" y2="49" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="33" y1="44" x2="43" y2="44" stroke="#94a3b8" stroke-width="1.5" />
+                  <line x1="34.5" y1="40.5" x2="41.5" y2="47.5" stroke="#94a3b8" stroke-width="1.2" />
+                  <line x1="34.5" y1="47.5" x2="41.5" y2="40.5" stroke="#94a3b8" stroke-width="1.2" />
+                  <circle cx="38" cy="44" r="2.2" fill="#06b6d4" />
+                </g>
 
-  <!-- Gradient Definitions -->
-  <defs>
-    <linearGradient id="headlightBeamGrad" x1="144" y1="40" x2="240" y2="40" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.85" />
-      <stop offset="35%" stop-color="#38bdf8" stop-opacity="0.4" />
-      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
-    </linearGradient>
-  </defs>
-</svg>
+                <!-- Gradient Defs for Headlight Beams -->
+                <defs>
+                  <linearGradient id="headlightBeamGrad" x1="144" y1="38" x2="240" y2="38" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.85" />
+                    <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.35" />
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
           </div>
         </div>

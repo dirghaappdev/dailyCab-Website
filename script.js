@@ -45,6 +45,7 @@ function setLanguage(lang) {
   }
   currentLanguage = lang;
   localStorage.setItem('daily_cab_lang', lang);
+  if (typeof updateHighwayUI === 'function') updateHighwayUI();
 
   const dict = window.appTranslations[lang];
 
@@ -533,106 +534,294 @@ function toggleFaq(button) {
 }
 
 // ============================================================
-// Moving Highway Banner & Cab Dynamics (Compatibility Focused)
+// Multi-Route Highway Transit Visualizer & 60FPS Cruise Engine
 // ============================================================
-let highwayDirection = 'fwd'; // 'fwd' = Shrirampur -> Pune, 'rev' = Pune -> Shrirampur
-let isHighwayTicking = false;
+
+const HIGHWAY_ROUTES = {
+  route_sangamner: {
+    id: 'route_sangamner',
+    bookingValue: 'Shrirampur - Sangamner - Pune',
+    code: 'NH 60 EXPRESSWAY',
+    totalKm: 205,
+    duration: '~4h 15m',
+    name: {
+      en: 'Shrirampur ⇄ Sangamner ⇄ Pune',
+      mr: 'श्रीरामपूर ⇄ संगमनेर ⇄ पुणे',
+      hi: 'श्रीरामपुर ⇄ संगमनेर ⇄ पुणे'
+    },
+    via: {
+      en: 'Via Loni, Sangamner, Alephata, Narayangaon, Chakan',
+      mr: 'लोणी, संगमनेर, आळेफाटा, नारायणगाव, चाकण मार्गे',
+      hi: 'लोणी, संगमनेर, आलेफाटा, नारायणगांव, चाकण होकर'
+    },
+    stops: [
+      { name: { en: 'Shrirampur', mr: 'श्रीरामपूर', hi: 'श्रीरामपुर' }, km: 0, icon: 'fa-flag' },
+      { name: { en: 'Loni', mr: 'लोणी', hi: 'लोणी' }, km: 28, icon: 'fa-location-dot' },
+      { name: { en: 'Sangamner', mr: 'संगमनेर', hi: 'संगमनेर' }, km: 65, icon: 'fa-location-dot' },
+      { name: { en: 'Alephata', mr: 'आळेफाटा', hi: 'आलेफाटा' }, km: 115, icon: 'fa-location-dot' },
+      { name: { en: 'Chakan', mr: 'चाकण', hi: 'चाकण' }, km: 170, icon: 'fa-location-dot' },
+      { name: { en: 'Pune City', mr: 'पुणे शहर', hi: 'पुणे शहर' }, km: 205, icon: 'fa-city' }
+    ]
+  },
+  route_ahilyanagar: {
+    id: 'route_ahilyanagar',
+    bookingValue: 'Shrirampur - Rahuri - Ahilyanagar - Pune',
+    code: 'SH 27 / NAGAR-PUNE HWY',
+    totalKm: 195,
+    duration: '~4h 00m',
+    name: {
+      en: 'Shrirampur ⇄ Ahilyanagar ⇄ Pune',
+      mr: 'श्रीरामपूर ⇄ अहिल्यानगर ⇄ पुणे',
+      hi: 'श्रीरामपुर ⇄ अहिल्यानगर ⇄ पुणे'
+    },
+    via: {
+      en: 'Via Rahuri, Ahilyanagar, Shirur, Shikrapur, Wagholi',
+      mr: 'राहुरी, अहिल्यानगर, शिरूर, शिक्रापूर, वाघोली मार्गे',
+      hi: 'राहुरी, अहिल्यानगर, शिरूर, शिक्रापुर, वाघोली होकर'
+    },
+    stops: [
+      { name: { en: 'Shrirampur', mr: 'श्रीरामपूर', hi: 'श्रीरामपुर' }, km: 0, icon: 'fa-flag' },
+      { name: { en: 'Rahuri', mr: 'राहुरी', hi: 'राहुरी' }, km: 32, icon: 'fa-location-dot' },
+      { name: { en: 'Ahilyanagar', mr: 'अहिल्यानगर', hi: 'अहिल्यानगर' }, km: 75, icon: 'fa-building-columns' },
+      { name: { en: 'Shirur', mr: 'शिरूर', hi: 'शिरूर' }, km: 130, icon: 'fa-location-dot' },
+      { name: { en: 'Wagholi', mr: 'वाघोली', hi: 'वाघोली' }, km: 175, icon: 'fa-location-dot' },
+      { name: { en: 'Pune Swargate', mr: 'पुणे स्वारगेट', hi: 'पुणे स्वारगेट' }, km: 195, icon: 'fa-location-crosshairs' }
+    ]
+  },
+  route_airport: {
+    id: 'route_airport',
+    bookingValue: 'Shrirampur to Pune Airport',
+    code: 'DIRECT AIRPORT EXPRESS',
+    totalKm: 215,
+    duration: '~4h 30m',
+    name: {
+      en: 'Shrirampur ⇄ Pune Airport (PNQ) & Hinjawadi',
+      mr: 'श्रीरामपूर ⇄ पुणे विमानतळ (PNQ) आणि हिंजवडी',
+      hi: 'श्रीरामपुर ⇄ पुणे एयरपोर्ट (PNQ) और हिंजवडी'
+    },
+    via: {
+      en: 'Direct drop at Lohegaon Airport Terminal & Hinjawadi Phases 1-3',
+      mr: 'लोहगाव विमानतळ टर्मिनल आणि हिंजवडी फेज १-३ थेट ड्रॉप',
+      hi: 'लोहगांव एयरपोर्ट टर्मिनल और हिंजवडी फेज 1-3 सीधे ड्रॉप'
+    },
+    stops: [
+      { name: { en: 'Shrirampur', mr: 'श्रीरामपूर', hi: 'श्रीरामपुर' }, km: 0, icon: 'fa-flag' },
+      { name: { en: 'Sangamner Hub', mr: 'संगमनेर हब', hi: 'संगमनेर हब' }, km: 65, icon: 'fa-location-dot' },
+      { name: { en: 'Alephata', mr: 'आळेफाटा', hi: 'आलेफाटा' }, km: 115, icon: 'fa-location-dot' },
+      { name: { en: 'Pune Airport (PNQ)', mr: 'पुणे विमानतळ', hi: 'पुणे एयरपोर्ट' }, km: 195, icon: 'fa-plane-departure' },
+      { name: { en: 'Hinjawadi IT Park', mr: 'हिंजवडी आयटी पार्क', hi: 'हिंजवडी आईटी पार्क' }, km: 215, icon: 'fa-laptop-code' }
+    ]
+  },
+  route_return: {
+    id: 'route_return',
+    bookingValue: 'Pune - Sangamner - Shrirampur',
+    code: 'DAILY RETURN CORRIDOR',
+    totalKm: 205,
+    duration: '~4h 15m',
+    name: {
+      en: 'Pune ➔ Sangamner ➔ Shrirampur (Return)',
+      mr: 'पुणे ➔ संगमनेर ➔ श्रीरामपूर (दैनिक परतीचा)',
+      hi: 'पुणे ➔ संगमनेर ➔ श्रीरामपुर (दैनिक वापसी)'
+    },
+    via: {
+      en: 'Pickups across Swargate, Station, Viman Nagar, Bhosari, Chakan',
+      mr: 'स्वारगेट, पुणे स्टेशन, विमान नगर, भोसरी, चाकण येथून थेट पिकअप',
+      hi: 'स्वारगेट, पुणे स्टेशन, विमान नगर, भोसरी, चाकण से पिकअप'
+    },
+    stops: [
+      { name: { en: 'Pune Swargate', mr: 'पुणे स्वारगेट', hi: 'पुणे स्वारगेट' }, km: 0, icon: 'fa-location-crosshairs' },
+      { name: { en: 'Bhosari / Chakan', mr: 'भोसरी / चाकण', hi: 'भोसरी / चाकण' }, km: 35, icon: 'fa-location-dot' },
+      { name: { en: 'Alephata', mr: 'आळेफाटा', hi: 'आलेफाटा' }, km: 90, icon: 'fa-location-dot' },
+      { name: { en: 'Sangamner', mr: 'संगमनेर', hi: 'संगमनेर' }, km: 140, icon: 'fa-location-dot' },
+      { name: { en: 'Loni', mr: 'लोणी', hi: 'लोणी' }, km: 177, icon: 'fa-location-dot' },
+      { name: { en: 'Shrirampur City', mr: 'श्रीरामपूर शहर', hi: 'श्रीरामपुर शहर' }, km: 205, icon: 'fa-flag-checkered' }
+    ]
+  }
+};
+
+let activeHighwayRouteKey = 'route_sangamner';
+let highwayDirection = 'fwd';
+let isHighwayCruisePlaying = true;
+let cruiseProgress = 0.05; // 0 to 1
+let cruiseSpeed = 0.0016; // smooth continuous 60fps cruise speed (~18s full trip)
+let lastTimestamp = 0;
+let highwayRafId = null;
 
 function initHighwayMovement() {
   const banner = document.getElementById('highway-movement-banner');
   if (!banner) return;
 
-  window.addEventListener('scroll', () => {
-    if (!isHighwayTicking) {
-      window.requestAnimationFrame(() => {
-        handleHighwayScroll();
-        isHighwayTicking = false;
-      });
-      isHighwayTicking = true;
-    }
-  }, { passive: true });
+  renderHighwayMilestones();
+  updateHighwayUI();
 
-  // Initial calculation
-  handleHighwayScroll();
+  // Start smooth 60fps auto-cruise animation loop
+  if (highwayRafId) cancelAnimationFrame(highwayRafId);
+  lastTimestamp = performance.now();
+  highwayRafId = requestAnimationFrame(highwayLoop);
 }
 
-function handleHighwayScroll() {
-  const banner = document.getElementById('highway-movement-banner');
-  const cab = document.getElementById('moving-cab-container');
+function highwayLoop(timestamp) {
+  const deltaTime = timestamp - lastTimestamp;
+  lastTimestamp = timestamp;
+
+  if (isHighwayCruisePlaying) {
+    // Increment cruise progress smoothly based on elapsed time (normalizes 60fps / 120fps displays)
+    const factor = Math.min(Math.max(deltaTime / 16.666, 0.5), 3);
+    cruiseProgress += cruiseSpeed * factor;
+    if (cruiseProgress > 1) {
+      cruiseProgress = 0;
+    }
+    updateHighwayVehiclePosition();
+  }
+
+  highwayRafId = requestAnimationFrame(highwayLoop);
+}
+
+function updateHighwayVehiclePosition() {
+  const roadTrack = document.getElementById('highway-road-track');
+  const cabContainer = document.getElementById('moving-cab-container');
   const odo = document.getElementById('hud-odometer-val');
   const nextStop = document.getElementById('hud-next-stop-val');
   const progressBar = document.getElementById('hud-trip-progress-bar');
-  if (!banner || !cab) return;
+  if (!roadTrack || !cabContainer) return;
 
-  const rect = banner.getBoundingClientRect();
-  const winHeight = window.innerHeight;
+  const trackWidth = roadTrack.clientWidth;
+  const cabWidth = window.innerWidth < 640 ? 112 : 176;
+  const usableWidth = Math.max(trackWidth - cabWidth - 20, 50);
 
-  // Calculate visibility / progress through the page
-  const totalTravel = winHeight + rect.height;
-  const currentPos = winHeight - rect.top;
-  let progress = Math.min(Math.max(currentPos / totalTravel, 0), 1);
-
-  // If in reverse direction, invert progress
+  // Calculate translation X with hardware acceleration
+  let normalizedProgress = cruiseProgress;
   if (highwayDirection === 'rev') {
-    progress = 1 - progress;
+    normalizedProgress = 1 - cruiseProgress;
   }
 
-  // Update odometer (0 to 205 km)
-  const totalKm = 205;
-  const currentKm = Math.round(progress * totalKm);
+  const targetX = 10 + normalizedProgress * usableWidth;
+  cabContainer.style.transform = `translate3d(${targetX}px, 0, 0)`;
+
+  // Update odometer
+  const route = HIGHWAY_ROUTES[activeHighwayRouteKey] || HIGHWAY_ROUTES.route_sangamner;
+  const currentKm = Math.round(normalizedProgress * route.totalKm);
   if (odo) {
-    odo.textContent = `${currentKm} km / ${totalKm} km`;
+    odo.textContent = `${currentKm} km / ${route.totalKm} km`;
   }
   if (progressBar) {
-    progressBar.style.width = `${Math.round(progress * 100)}%`;
+    progressBar.style.width = `${Math.min(Math.max(normalizedProgress * 100, 3), 100)}%`;
   }
 
-  // Landmark stop indicator
-  if (nextStop) {
-    if (highwayDirection === 'fwd') {
-      if (currentKm < 30) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'लोणी महामार्ग (२८ किमी)' : (currentLanguage === 'hi' ? 'लोणी हाईवे (28 किमी)' : 'Loni Highway (28 km)');
-      } else if (currentKm < 75) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'संगमनेर बायपास (६५ किमी)' : (currentLanguage === 'hi' ? 'संगमनेर बाईपास (65 किमी)' : 'Sangamner Bypass (65 km)');
-      } else if (currentKm < 125) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'आळेफाटा चौक (११५ किमी)' : (currentLanguage === 'hi' ? 'आलेफाटा चौक (115 किमी)' : 'Alephata Junction (115 km)');
-      } else if (currentKm < 175) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'नारायणगाव / चाकण' : (currentLanguage === 'hi' ? 'नारायणगांव / चाकण' : 'Narayangaon / Chakan');
-      } else {
-        nextStop.textContent = currentLanguage === 'mr' ? 'पुणे आगमन (विमानतळ / स्वारगेट)' : (currentLanguage === 'hi' ? 'पुणे आगमन (हवाई अड्डा / स्वारगेट)' : 'Pune Arrival (Airport / Swargate)');
-      }
-    } else {
-      if (currentKm < 30) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'पुणे प्रस्थान (० किमी)' : (currentLanguage === 'hi' ? 'पुणे प्रस्थान (0 किमी)' : 'Pune Departure (0 km)');
-      } else if (currentKm < 80) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'आळेफाटा चौक (९० किमी)' : (currentLanguage === 'hi' ? 'आलेफाटा चौक (90 किमी)' : 'Alephata Junction (90 km)');
-      } else if (currentKm < 140) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'संगमनेर बायपास (१४० किमी)' : (currentLanguage === 'hi' ? 'संगमनेर बाईपास (140 किमी)' : 'Sangamner Bypass (140 km)');
-      } else if (currentKm < 185) {
-        nextStop.textContent = currentLanguage === 'mr' ? 'लोणी (१७७ किमी)' : (currentLanguage === 'hi' ? 'लोणी (177 किमी)' : 'Loni (177 km)');
-      } else {
-        nextStop.textContent = currentLanguage === 'mr' ? 'श्रीरामपूर आगमन (२०५ किमी)' : (currentLanguage === 'hi' ? 'श्रीरामपुर आगमन (205 किमी)' : 'Shrirampur Arrival (205 km)');
-      }
+  // Update closest / approaching landmark
+  const stops = route.stops;
+  let activeStopIdx = 0;
+  for (let i = 0; i < stops.length; i++) {
+    if (currentKm >= stops[i].km - 15) {
+      activeStopIdx = i;
     }
   }
 
-  // Smoothly position the cab along the road (range: 2% to 78%)
-  const minLeft = 2;
-  const maxLeft = 78;
-  const targetLeft = minLeft + progress * (maxLeft - minLeft);
-  cab.style.left = `${targetLeft}%`;
+  if (nextStop && stops[activeStopIdx]) {
+    const stopName = stops[activeStopIdx].name[currentLanguage] || stops[activeStopIdx].name.en;
+    const kmText = stops[activeStopIdx].km > 0 ? ` (${stops[activeStopIdx].km} km)` : '';
+    nextStop.textContent = `${stopName}${kmText}`;
+  }
 
-  // Update milestone pin active states
-  document.querySelectorAll('.highway-milestone-marker').forEach(pin => {
-    const pinKm = parseInt(pin.getAttribute('data-km') || '0', 10);
-    if (currentKm >= pinKm - 10) {
-      pin.classList.add('text-brand-cyan', 'scale-110');
-      pin.classList.remove('text-slate-500');
+  // Update milestone marker badges
+  const markers = document.querySelectorAll('.highway-milestone-marker');
+  markers.forEach((m, idx) => {
+    if (idx === activeStopIdx) {
+      m.classList.add('text-brand-cyan', 'waypoint-active-beacon');
+      m.classList.remove('text-slate-400', 'opacity-60');
+    } else if (idx < activeStopIdx) {
+      m.classList.add('text-cyan-400');
+      m.classList.remove('text-slate-400', 'waypoint-active-beacon', 'opacity-60');
     } else {
-      pin.classList.remove('text-brand-cyan', 'scale-110');
-      pin.classList.add('text-slate-500');
+      m.classList.remove('text-brand-cyan', 'text-cyan-400', 'waypoint-active-beacon');
+      m.classList.add('text-slate-400', 'opacity-60');
     }
   });
+}
+
+function renderHighwayMilestones() {
+  const container = document.getElementById('highway-milestones-track');
+  if (!container) return;
+
+  const route = HIGHWAY_ROUTES[activeHighwayRouteKey] || HIGHWAY_ROUTES.route_sangamner;
+  const stops = route.stops;
+
+  let html = '';
+  stops.forEach((stop, idx) => {
+    const isFirst = idx === 0;
+    const isLast = idx === stops.length - 1;
+    const stopName = stop.name[currentLanguage] || stop.name.en;
+    
+    // Hide intermediate stops on very small mobile screens to keep layout ultra clean
+    const hideOnMobile = (!isFirst && !isLast && idx % 2 !== 0 && stops.length > 5) ? 'hidden sm:flex' : 'flex';
+
+    html += `
+      <div onclick="jumpToMilestone(${idx})" class="highway-milestone-marker cursor-pointer ${hideOnMobile} flex-col items-center transition-all duration-300 hover:scale-110" data-stop-idx="${idx}">
+        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-900 border border-current flex items-center justify-center text-[10px] sm:text-xs mb-1 shadow">
+          <i class="fa-solid ${stop.icon}"></i>
+        </div>
+        <span class="text-[10px] sm:text-xs font-bold text-center leading-tight max-w-[70px] sm:max-w-none truncate sm:overflow-visible">${stopName}</span>
+        <span class="text-[9px] font-mono text-slate-400 mt-0.5">${stop.km} km</span>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+function updateHighwayUI() {
+  const route = HIGHWAY_ROUTES[activeHighwayRouteKey] || HIGHWAY_ROUTES.route_sangamner;
+  
+  const codeEl = document.getElementById('hud-route-code');
+  const nameEl = document.getElementById('hud-active-route-name');
+  const viaEl = document.getElementById('hud-active-via-text');
+  const durationEl = document.getElementById('hud-est-duration-val');
+  
+  if (codeEl) codeEl.textContent = route.code;
+  if (nameEl) nameEl.textContent = route.name[currentLanguage] || route.name.en;
+  if (viaEl) viaEl.textContent = route.via[currentLanguage] || route.via.en;
+  if (durationEl) {
+    durationEl.innerHTML = `<i class="fa-solid fa-clock text-xs mr-1 text-emerald-400"></i> ${route.duration}`;
+  }
+
+  // Update corridor button styles
+  document.querySelectorAll('.route-corridor-btn').forEach(btn => {
+    if (btn.id === `btn-${activeHighwayRouteKey.replace('_', '-')}`) {
+      btn.className = 'route-corridor-btn active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-cyan text-brand-navy border border-brand-cyan shadow-md shadow-cyan-500/20 transition flex items-center gap-2';
+    } else {
+      btn.className = 'route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2';
+    }
+  });
+
+  renderHighwayMilestones();
+  updateHighwayVehiclePosition();
+}
+
+function switchHighwayRoute(routeKey) {
+  if (!HIGHWAY_ROUTES[routeKey]) return;
+  activeHighwayRouteKey = routeKey;
+  cruiseProgress = 0.05; // restart cruise
+  updateHighwayUI();
+}
+
+function toggleHighwayCruise() {
+  isHighwayCruisePlaying = !isHighwayCruisePlaying;
+  const icon = document.getElementById('highway-playpause-icon');
+  const label = document.getElementById('highway-playpause-label');
+  const dividers = document.querySelectorAll('.highway-dashed-line');
+  const wheels = document.querySelectorAll('.cab-wheel-spin');
+
+  if (isHighwayCruisePlaying) {
+    if (icon) icon.className = 'fa-solid fa-pause text-brand-cyan text-xs';
+    if (label) label.textContent = currentLanguage === 'mr' ? 'थांबवा' : (currentLanguage === 'hi' ? 'रोकें' : 'Pause');
+    dividers.forEach(d => d.style.animationPlayState = 'running');
+    wheels.forEach(w => w.style.animationPlayState = 'running');
+  } else {
+    if (icon) icon.className = 'fa-solid fa-play text-emerald-400 text-xs';
+    if (label) label.textContent = currentLanguage === 'mr' ? 'सुरू करा' : (currentLanguage === 'hi' ? 'शुरू करें' : 'Play Cruise');
+    dividers.forEach(d => d.style.animationPlayState = 'paused');
+    wheels.forEach(w => w.style.animationPlayState = 'paused');
+  }
 }
 
 function setHighwayDirection(dir) {
@@ -644,18 +833,46 @@ function setHighwayDirection(dir) {
   const wheels = document.querySelectorAll('.cab-wheel-spin');
 
   if (dir === 'rev') {
-    if (fwdBtn) fwdBtn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-white/5 border border-white/10 transition';
-    if (revBtn) revBtn.className = 'px-3 py-1.5 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition';
+    if (fwdBtn) fwdBtn.className = 'px-3 py-1 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-transparent transition';
+    if (revBtn) revBtn.className = 'px-3 py-1 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition';
     if (cabSvg) cabSvg.style.transform = 'scaleX(-1)';
     roadDividers.forEach(line => line.classList.add('reverse-motion'));
     wheels.forEach(w => w.classList.add('reverse-motion'));
   } else {
-    if (fwdBtn) fwdBtn.className = 'px-3 py-1.5 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition';
-    if (revBtn) revBtn.className = 'px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-white/5 border border-white/10 transition';
+    if (fwdBtn) fwdBtn.className = 'px-3 py-1 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition';
+    if (revBtn) revBtn.className = 'px-3 py-1 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-transparent transition';
     if (cabSvg) cabSvg.style.transform = 'scaleX(1)';
     roadDividers.forEach(line => line.classList.remove('reverse-motion'));
     wheels.forEach(w => w.classList.remove('reverse-motion'));
   }
 
-  handleHighwayScroll();
+  updateHighwayVehiclePosition();
+}
+
+function jumpToMilestone(idx) {
+  const route = HIGHWAY_ROUTES[activeHighwayRouteKey] || HIGHWAY_ROUTES.route_sangamner;
+  if (!route.stops[idx]) return;
+  const totalStops = route.stops.length;
+  cruiseProgress = idx / (totalStops - 1);
+  updateHighwayVehiclePosition();
+}
+
+function bookSelectedRoute() {
+  const route = HIGHWAY_ROUTES[activeHighwayRouteKey] || HIGHWAY_ROUTES.route_sangamner;
+  const selectEl = document.getElementById('route-select');
+  if (selectEl) {
+    selectEl.value = route.bookingValue;
+    if (typeof updateRouteDetails === 'function') {
+      updateRouteDetails();
+    }
+  }
+
+  const bookingSection = document.getElementById('booking-section');
+  if (bookingSection) {
+    bookingSection.scrollIntoView({ behavior: 'smooth' });
+    const dateInput = document.getElementById('travel-date');
+    if (dateInput) {
+      setTimeout(() => dateInput.focus(), 600);
+    }
+  }
 }

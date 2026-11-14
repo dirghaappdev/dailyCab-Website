@@ -111,7 +111,19 @@ input:focus, select:focus, textarea:focus {
   overflow: hidden;
 }
 
-/* Animated dashed lane dividers */
+/* Horizontal chip navigation for mobile */
+.route-chips-scroll {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.route-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animated dashed lane dividers with GPU acceleration */
 .highway-dashed-line {
   height: 4px;
   background-image: repeating-linear-gradient(90deg, #00d2ff 0px, #00d2ff 32px, transparent 32px, transparent 64px);
@@ -140,6 +152,13 @@ input:focus, select:focus, textarea:focus {
   100% {
     background-position: 64px 0;
   }
+}
+
+/* Buttery smooth 60fps moving cab container using transform translate3d */
+#moving-cab-container {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
 }
 
 /* Smooth cab vehicle dynamics */
@@ -217,13 +236,30 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
+/* Active waypoint beacon pulse */
+@keyframes waypointGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 8px rgba(6, 182, 212, 0);
+  }
+}
+
+.waypoint-active-beacon {
+  animation: waypointGlow 2s infinite;
+}
+
 /* Respect user accessibility motion preference */
 @media (prefers-reduced-motion: reduce) {
   .highway-dashed-line,
   .cab-wheel-spin,
   .cab-suspension-anim,
   .windmill-blade-anim,
-  .headlight-pulse-beam {
+  .headlight-pulse-beam,
+  .waypoint-active-beacon {
     animation: none !important;
   }
 }

@@ -1,10 +1,4 @@
-/**
- * Comprehensive Trilingual Dictionary for Daily Pune Cab
- * Supported: English (en), मराठी (mr), हिंदी (hi)
- * Covers both index.html (Main Website) and app.html (Dedicated App Page)
- */
-
-const translations = {
+window.appTranslations = {
   "en": {
     "announcement_badge": "<i class=\"fa-solid fa-clock mr-1.5\"></i> APP COMING SOON",
     "announcement_text": "Official Daily Cab Mobile App Launching Soon • Pre-Register for Priority Access & Launch Offers!",
@@ -317,9 +311,9 @@ const translations = {
     "fare_hint_pune_sharing": "<strong>Pune to Shrirampur:</strong> Fixed ₹550 / seat. Flexible pickups!",
     "fare_hint_pune_private": "<strong>Pune to Shrirampur Cab:</strong> Dedicated Sedan from ₹2,499 | SUV from ₹3,499.",
     "fare_hint_custom": "<strong>Outstation / Custom:</strong> Transparent per-km packages. Instant custom quote on WhatsApp!",
-    "hud_banner_pill": "<i class=\"fa-solid fa-road text-brand-cyan mr-1.5\"></i> LIVE HIGHWAY TRANSIT",
-    "hud_banner_title": "Expressway Route in Motion",
-    "hud_banner_desc": "Experience smooth, air-conditioned expressway travel between Shrirampur and Pune. Watch the cab cruise past real highway milestones dynamically as you scroll.",
+    "hud_banner_pill": "<i class=\"fa-solid fa-route text-brand-cyan mr-1.5\"></i> ALL ROUTES TRANSIT VISUALIZER",
+    "hud_banner_title": "Interactive Route & Highway Transit",
+    "hud_banner_desc": "Select any Daily Cab corridor below to preview the route, real highway waypoints, live cruising telemetry, and travel time across Maharashtra.",
     "hud_btn_fwd": "Shrirampur ➔ Pune (NH 60)",
     "hud_btn_rev": "Pune ➔ Shrirampur (Return)",
     "hud_stat_speed": "<i class=\"fa-solid fa-gauge-high text-brand-cyan mr-1\"></i> Cruising: 72 km/h",
@@ -332,7 +326,16 @@ const translations = {
     "app_notify_sub": "The app is in final testing before store release. Enter your mobile number or email ID to get notified instantly when live.",
     "app_notify_placeholder": "Enter Mobile Number or Email ID",
     "app_notify_btn": "<i class=\"fa-solid fa-bell mr-1.5\"></i> Notify Me When Live",
-    "app_store_coming_soon": "Coming Soon"
+    "app_store_coming_soon": "Coming Soon",
+    "hud_tab_sangamner": "Sangamner (NH 60)",
+    "hud_tab_ahilyanagar": "Ahilyanagar (SH 27)",
+    "hud_tab_airport": "Airport & Hinjawadi",
+    "hud_tab_return": "Pune ➔ Shrirampur (Return)",
+    "hud_btn_pause": "Pause",
+    "hud_btn_play": "Play Cruise",
+    "hud_btn_book_route": "Book This Route",
+    "hud_stat_est_time": "Est. Duration",
+    "hud_stat_fare": "Seat Sharing From"
   },
   "mr": {
     "announcement_badge": "<i class=\"fa-solid fa-clock mr-1.5\"></i> ॲप लवकरच येत आहे",
@@ -646,9 +649,9 @@ const translations = {
     "fare_hint_pune_sharing": "<strong>पुणे ते श्रीरामपूर:</strong> निश्चित ₹५५० / सीट. सोयीस्कर पिकअप!",
     "fare_hint_pune_private": "<strong>पुणे ते श्रीरामपूर कॅब:</strong> स्वतंत्र सेडान ₹२,४९९ पासून | एसयूव्ही ₹३,४९९ पासून.",
     "fare_hint_custom": "<strong>इतर शहरे / कस्टम प्रवास:</strong> पारदर्शक प्रति-किमी दर. व्हॉट्सॲपवर त्वरित कोटेशन मिळवा!",
-    "hud_banner_pill": "<i class=\"fa-solid fa-road text-brand-cyan mr-1.5\"></i> थेट महामार्ग प्रवास दृश्य",
-    "hud_banner_title": "श्रीरामपूर ⇄ पुणे गतिमान महामार्ग प्रवास",
-    "hud_banner_desc": "श्रीरामपूर ते पुणे दरम्यान सुखकर, वातानुकूलित महामार्ग प्रवासाचा अनुभव. स्क्रोल करताना गाडी विविध प्रमुख टप्प्यांमधून वेगाने प्रवास करताना पहा.",
+    "hud_banner_pill": "<i class=\"fa-solid fa-route text-brand-cyan mr-1.5\"></i> सर्व मार्ग थेट प्रवास दृश्य",
+    "hud_banner_title": "सर्व मार्गांचे थेट गतिमान प्रवास दृश्य",
+    "hud_banner_desc": "खालीलपैकी कोणताही मार्ग निवडून त्याचे प्रमुख थांबे, महामार्गावरील टप्पे, प्रवासाची गती आणि अंदाजे वेळ पहा.",
     "hud_btn_fwd": "श्रीरामपूर ➔ पुणे (महामार्ग ६०)",
     "hud_btn_rev": "पुणे ➔ श्रीरामपूर (परतीचा प्रवास)",
     "hud_stat_speed": "<i class=\"fa-solid fa-gauge-high text-brand-cyan mr-1\"></i> प्रवास गती: ७२ किमी/तास",
@@ -661,7 +664,16 @@ const translations = {
     "app_notify_sub": "ॲप लवकरच गुगल प्ले व ॲप स्टोअरवर येत आहे. लाइव्ह होताच त्वरित सूचना मिळवण्यासाठी मोबाईल किंवा ईमेल नोंदवा.",
     "app_notify_placeholder": "मोबाईल नंबर किंवा ईमेल आयडी टाका",
     "app_notify_btn": "<i class=\"fa-solid fa-bell mr-1.5\"></i> ॲप लाइव्ह झाल्यावर कळवा",
-    "app_store_coming_soon": "लवकरच येत आहे"
+    "app_store_coming_soon": "लवकरच येत आहे",
+    "hud_tab_sangamner": "संगमनेर (महामार्ग ६०)",
+    "hud_tab_ahilyanagar": "अहिल्यानगर (मार्ग २७)",
+    "hud_tab_airport": "विमानतळ व हिंजवडी",
+    "hud_tab_return": "पुणे ➔ श्रीरामपूर (परतीचा)",
+    "hud_btn_pause": "थांबवा",
+    "hud_btn_play": "सुरू करा",
+    "hud_btn_book_route": "या मार्गावर सीट बुक करा",
+    "hud_stat_est_time": "अंदाजे वेळ",
+    "hud_stat_fare": "सीट शेअरिंग दर"
   },
   "hi": {
     "announcement_badge": "<i class=\"fa-solid fa-clock mr-1.5\"></i> ऐप जल्द आ रहा है",
@@ -975,9 +987,9 @@ const translations = {
     "fare_hint_pune_sharing": "<strong>पुणे से श्रीरामपुर:</strong> निश्चित ₹550 / सीट। सुविधाजनक पिकअप!",
     "fare_hint_pune_private": "<strong>पुणे से श्रीरामपुर कैब:</strong> प्राइवेट सेडान ₹2,499 से | एसयूवी ₹3,499 से।",
     "fare_hint_custom": "<strong>अन्य शहर / कस्टम यात्रा:</strong> पारदर्शी प्रति-किमी पैकेज। व्हाट्सएप पर तुरंत कोटेशन पाएं!",
-    "hud_banner_pill": "<i class=\"fa-solid fa-road text-brand-cyan mr-1.5\"></i> लाइव हाईवे ट्रांजिट",
-    "hud_banner_title": "श्रीरामपुर ⇄ पुणे गतिमान हाईवे सफर",
-    "hud_banner_desc": "श्रीरामपुर से पुणे के बीच आरामदायक, वातानुकूलित हाईवे सफर का अनुभव लें। पेज स्क्रोल करते हुए कैब को वास्तविक पड़ावों से गुजरते देखें।",
+    "hud_banner_pill": "<i class=\"fa-solid fa-route text-brand-cyan mr-1.5\"></i> सभी रूट्स लाइव ट्रांजिट",
+    "hud_banner_title": "सभी रूट्स का लाइव गतिमान सफर",
+    "hud_banner_desc": "नीचे दिए गए किसी भी रूट को चुनकर उसके मुख्य स्टॉप्स, हाईवे के प्रमुख पड़ाव, सफर की गति और अनुमानित समय देखें।",
     "hud_btn_fwd": "श्रीरामपुर ➔ पुणे (एनएच ६०)",
     "hud_btn_rev": "पुणे ➔ श्रीरामपुर (वापसी यात्रा)",
     "hud_stat_speed": "<i class=\"fa-solid fa-gauge-high text-brand-cyan mr-1\"></i> क्रूज़ गति: 72 किमी/घंटा",
@@ -990,11 +1002,15 @@ const translations = {
     "app_notify_sub": "ऐप जल्द ही गूगल प्ले और ऐप स्टोर पर आ रहा है। लाइव होते ही तुरंत नोटिफिकेशन पाने हेतु मोबाइल या ईमेल दर्ज करें।",
     "app_notify_placeholder": "मोबाइल नंबर या ईमेल आईडी दर्ज करें",
     "app_notify_btn": "<i class=\"fa-solid fa-bell mr-1.5\"></i> ऐप लाइव होने पर सूचित करें",
-    "app_store_coming_soon": "जल्द आ रहा है"
+    "app_store_coming_soon": "जल्द आ रहा है",
+    "hud_tab_sangamner": "संगमनेर (एनएच ६०)",
+    "hud_tab_ahilyanagar": "अहिल्यानगर (मार्ग २७)",
+    "hud_tab_airport": "एयरपोर्ट व हिंजवडी",
+    "hud_tab_return": "पुणे ➔ श्रीरामपुर (वापसी)",
+    "hud_btn_pause": "रोकें",
+    "hud_btn_play": "शुरू करें",
+    "hud_btn_book_route": "इस रूट पर सीट बुक करें",
+    "hud_stat_est_time": "अनुमानित समय",
+    "hud_stat_fare": "सीट शेयरिंग किराया"
   }
 };
-
-// Export to window
-if (typeof window !== 'undefined') {
-  window.appTranslations = translations;
-}
