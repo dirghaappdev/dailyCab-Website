@@ -1,18 +1,33 @@
-/* Custom Styles for Daily Pune Cab Website & Mobile App Showcase */
+/* ============================================================
+   Daily Cab — Nature Green & Electric Future Blue Design System
+   Green: Eco-smart, natural, sustainable daily commute
+   Blue: Next-gen electric mobility, reliability, futuristic trust
+   ============================================================ */
 
 :root {
-  --brand-navy: #0b1528;
-  --brand-navy-light: #14223d;
-  --brand-navy-dark: #060d19;
+  /* Nature Green (Eco, Sustainability, Freshness) */
+  --brand-emerald: #10b981;
+  --brand-emerald-dark: #059669;
+  --brand-emerald-light: #34d399;
+  --brand-emerald-mint: #ecfdf5;
+  --brand-emerald-glow: rgba(16, 185, 129, 0.35);
+
+  /* Electric Future Blue & Cyber Cyan (EV, Innovation, Tech) */
   --brand-blue: #0284c7;
-  --brand-blue-hover: #0369a1;
+  --brand-blue-dark: #0369a1;
+  --brand-cyber-blue: #2563eb;
   --brand-cyan: #06b6d4;
   --brand-cyan-light: #38bdf8;
   --brand-cyan-glow: #00d2ff;
-  --brand-emerald: #10b981;
+
+  /* Deep Space Tech Navy (Futuristic Foundation) */
+  --brand-navy: #070f1e;
+  --brand-navy-card: #0b172a;
+  --brand-navy-light: #132238;
+  --brand-navy-dark: #040913;
 }
 
-/* Smooth Scrolling */
+/* Smooth Scrolling & Typography */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -24,68 +39,110 @@ html {
   width: 7px;
   height: 7px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #0b1528;
+  background: var(--brand-navy);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1e3a5f;
+  background: linear-gradient(180deg, var(--brand-emerald-dark), var(--brand-blue));
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: var(--brand-cyan-glow);
 }
 
-/* Glassmorphism helpers */
+/* Glassmorphism helpers with Bio-Electric Glow */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .glass-panel-dark {
-  background: rgba(11, 21, 40, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(56, 189, 248, 0.15);
+  background: rgba(11, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.futuristic-card {
+  background: linear-gradient(145deg, rgba(11, 23, 42, 0.95) 0%, rgba(7, 15, 30, 0.98) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  box-shadow: 0 20px 45px -15px rgba(2, 132, 199, 0.25), 0 0 20px rgba(16, 185, 129, 0.1);
 }
 
 /* Card hover transitions */
 .hover-lift {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
 }
-
 .hover-lift:hover {
   transform: translateY(-4px);
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+/* Futuristic Text Gradients */
+.text-future-gradient {
+  background: linear-gradient(135deg, #34d399 0%, #00d2ff 60%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-eco-gradient {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Bio-Electric Badges */
+.badge-eco-future {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #34d399;
+}
+
+.badge-electric-future {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  color: #00d2ff;
+}
+
+/* High-tech Action Button */
+.btn-bio-electric {
+  background: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+  color: #ffffff;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
+}
+.btn-bio-electric:hover {
+  background: linear-gradient(135deg, #059669 0%, #0369a1 100%);
+  box-shadow: 0 15px 30px -5px rgba(6, 182, 212, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Futuristic Pulsing Auras */
+@keyframes bioElectricPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.25), 0 0 30px rgba(6, 182, 212, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.45), 0 0 45px rgba(0, 210, 255, 0.35);
+  }
+}
+.glow-bio-electric {
+  animation: bioElectricPulse 3.5s ease-in-out infinite;
+}
+
+/* Form input focus polish with Green/Blue aura */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25), 0 0 15px rgba(6, 182, 212, 0.2);
 }
 
 /* Accordion Animation */
 .faq-content {
   transition: all 0.3s ease-in-out;
-}
-
-/* Custom Animations */
-@keyframes cyanGlowPulse {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
-  }
-}
-
-.glow-cyan {
-  animation: cyanGlowPulse 3s ease-in-out infinite;
-}
-
-/* Form input focus polish with Electric Sky glow */
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: #0284c7;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
 }
 
 /* Mobile App Mockup Screen Scroll Styling */
@@ -96,170 +153,13 @@ input:focus, select:focus, textarea:focus {
   background: rgba(255, 255, 255, 0.05);
 }
 #screen-history::-webkit-scrollbar-thumb {
-  background: #0284c7;
+  background: linear-gradient(180deg, #10b981, #0284c7);
   border-radius: 3px;
-}
-
-/* ============================================================
-   Moving Highway Transit Banner & Cab Dynamics (Compatibility Focused)
-   Hardware-accelerated transforms (translate3d), 60 FPS, zero layout reflow
-   ============================================================ */
-
-.highway-road-surface {
-  background: linear-gradient(180deg, #182845 0%, #0d172b 40%, #080f1e 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Horizontal chip navigation for mobile */
-.route-chips-scroll {
-  display: flex;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.route-chips-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Animated dashed lane dividers with GPU acceleration */
-.highway-dashed-line {
-  height: 4px;
-  background-image: repeating-linear-gradient(90deg, #00d2ff 0px, #00d2ff 32px, transparent 32px, transparent 64px);
-  background-size: 64px 4px;
-  animation: highwayStripes 0.75s linear infinite;
-  will-change: background-position;
-}
-
-.highway-dashed-line.reverse-motion {
-  animation: highwayStripesReverse 0.75s linear infinite;
-}
-
-@keyframes highwayStripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: -64px 0;
-  }
-}
-
-@keyframes highwayStripesReverse {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 64px 0;
-  }
-}
-
-/* Buttery smooth 60fps moving cab container using transform translate3d */
-#moving-cab-container {
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  pointer-events: none;
-}
-
-/* Smooth cab vehicle dynamics */
-.cab-suspension-anim {
-  animation: cabBounce 1.2s ease-in-out infinite;
-  will-change: transform;
-}
-
-@keyframes cabBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2px);
-  }
-}
-
-.cab-wheel-spin {
-  animation: wheelRotation 0.6s linear infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-  will-change: transform;
-}
-
-.cab-wheel-spin.reverse-motion {
-  animation: wheelRotationReverse 0.6s linear infinite;
-}
-
-@keyframes wheelRotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes wheelRotationReverse {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-.windmill-blade-anim {
-  animation: turbineSpin 7s linear infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-  will-change: transform;
-}
-
-@keyframes turbineSpin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.headlight-pulse-beam {
-  animation: headlightBeamPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes headlightBeamPulse {
-  0%, 100% {
-    opacity: 0.65;
-    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
-  }
-  50% {
-    opacity: 0.9;
-    filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.8));
-  }
-}
-
-/* Active waypoint beacon pulse */
-@keyframes waypointGlow {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7);
-  }
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 0 8px rgba(6, 182, 212, 0);
-  }
-}
-
-.waypoint-active-beacon {
-  animation: waypointGlow 2s infinite;
 }
 
 /* Respect user accessibility motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .highway-dashed-line,
-  .cab-wheel-spin,
-  .cab-suspension-anim,
-  .windmill-blade-anim,
-  .headlight-pulse-beam,
-  .waypoint-active-beacon {
+  .glow-bio-electric {
     animation: none !important;
   }
 }

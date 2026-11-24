@@ -206,7 +206,7 @@
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-cyan selection:text-white">
 
   <!-- Top Announcement & Language Switcher Bar -->
-  <div class="bg-gradient-to-r from-brand-navyDark via-brand-navy to-brand-navyLight text-white text-xs py-2 px-4 border-b border-sky-500/20 shadow-sm sticky top-0 z-50">
+  <div class="bg-gradient-to-r from-slate-950 via-[#071728] to-[#04201c] text-white text-xs py-2 px-4 border-b border-emerald-500/25 shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
       <div class="flex items-center space-x-3">
         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-brand-cyan text-brand-navy shadow-sm animate-pulse" data-i18n="announcement_badge">
@@ -245,18 +245,23 @@
   <header class="sticky top-9 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
+        <!-- Logo with Green Nature + Electric Blue Futuristic Badge -->
         <a href="#home" class="flex items-center gap-3 group">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-navy to-brand-blue flex items-center justify-center text-brand-cyanLight shadow-md group-hover:scale-105 transition-transform">
-            <i class="fa-solid fa-taxi text-2xl"></i>
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-sky-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+            <span class="flex items-center justify-center">
+              <i class="fa-solid fa-leaf text-emerald-200 text-lg mr-0.5"></i>
+              <i class="fa-solid fa-bolt text-cyan-200 text-sm -ml-1"></i>
+            </span>
           </div>
           <div>
             <div class="font-display font-black text-2xl tracking-tight text-brand-navy flex items-center gap-1.5">
               DAILY CAB
-              <span class="inline-block w-2.5 h-2.5 rounded-full bg-brand-cyan shadow-sm shadow-brand-cyan/50"></span>
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
             </div>
-            <div class="text-[11px] font-semibold text-sky-600 tracking-wider uppercase">
-              Your Journey. Our Commitment.
+            <div class="text-[11px] font-bold text-emerald-700 tracking-wider uppercase flex items-center gap-1">
+              <span>🌿 Eco Commute</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-sky-600">⚡ Electric Future</span>
             </div>
           </div>
         </a>
@@ -273,12 +278,12 @@
 
         <!-- CTA Buttons -->
         <div class="hidden sm:flex items-center space-x-3">
-          <!-- Dark Get App Button in CTA bar -->
-          <a href="app.html" class="px-4 py-2.5 rounded-xl bg-brand-navy hover:bg-brand-navyLight text-brand-cyanLight font-bold text-sm shadow-md transition flex items-center gap-2 border border-brand-cyan/30 hover:border-brand-cyan">
-            <i class="fa-solid fa-download text-brand-cyan"></i>
+          <!-- Dark Get App Button with Green & Blue Futuristic Glow -->
+          <a href="app.html" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 font-bold text-sm shadow-md transition flex items-center gap-2 border border-cyan-400/40 hover:border-emerald-400 hover:text-emerald-300">
+            <i class="fa-solid fa-mobile-screen-button text-emerald-400"></i>
             <span data-i18n="nav_get_app">Get App</span>
           </a>
-          <a href="#booking-section" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-blue to-cyan-500 text-white font-bold text-sm shadow-md shadow-blue-500/20 hover:shadow-lg hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center gap-2">
+          <a href="#booking-section" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 text-white font-bold text-sm shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:from-emerald-600 hover:to-blue-700 transition-all flex items-center gap-2">
             <i class="fa-solid fa-calendar-check"></i> <span data-i18n="nav_book_ride">Book Now</span>
           </a>
         </div>
@@ -320,11 +325,12 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="relative overflow-hidden bg-gradient-to-b from-brand-navyDark via-brand-navy to-slate-900 text-white pt-12 pb-24 lg:pt-16 lg:pb-32">
+  <section id="home" class="relative overflow-hidden bg-gradient-to-b from-[#060e1a] via-[#091527] to-slate-950 text-white pt-12 pb-24 lg:pt-16 lg:pb-32">
     <!-- Glow Pattern -->
     <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:28px_28px]"></div>
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-blue/30 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-20 left-1/3 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
     
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -420,7 +426,7 @@
 
         <!-- Right: Interactive Booking & Fare Inquiry Card -->
         <div class="lg:col-span-5" id="booking-section">
-          <div class="bg-white rounded-3xl p-6 sm:p-8 text-slate-800 shadow-2xl border border-slate-100 relative">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 text-slate-800 shadow-2xl border-2 border-emerald-500/30 relative shadow-emerald-500/5">
             <div class="absolute -top-3.5 right-6 bg-gradient-to-r from-brand-blue to-cyan-500 text-white font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full shadow-md" data-i18n="booking_quick_badge">
               <i class="fa-solid fa-bolt mr-1"></i> Quick Booking
             </div>
@@ -548,269 +554,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Moving Highway Transit Banner & Generic Multi-Route Visualizer -->
-  <section id="highway-movement-banner" class="relative bg-gradient-to-b from-brand-navyDark via-slate-950 to-brand-navy py-10 sm:py-14 text-white overflow-hidden border-y border-sky-500/20 shadow-2xl">
-    
-    <!-- Top HUD Header & Controls -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 relative z-20">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 mb-2" data-i18n="hud_banner_pill">
-            <i class="fa-solid fa-route text-brand-cyan mr-1.5"></i> ALL ROUTES TRANSIT VISUALIZER
-          </div>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight" data-i18n="hud_banner_title">
-            Interactive Route & Highway Transit
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 max-w-xl mt-1" data-i18n="hud_banner_desc">
-            Select any Daily Cab corridor below to preview the route, real highway waypoints, live cruising telemetry, and travel time across Maharashtra.
-          </p>
-        </div>
-
-        <!-- Direction & Play/Pause Controls -->
-        <div class="flex flex-wrap items-center gap-3">
-          <!-- Play / Pause Toggle -->
-          <button type="button" id="highway-btn-playpause" onclick="toggleHighwayCruise()" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center gap-2 transition shadow-sm">
-            <i id="highway-playpause-icon" class="fa-solid fa-pause text-brand-cyan text-xs"></i>
-            <span id="highway-playpause-label" data-i18n="hud_btn_pause">Pause</span>
-          </button>
-
-          <!-- Direction Switcher -->
-          <div class="flex items-center bg-white/10 p-1 rounded-full border border-white/15 text-xs">
-            <button type="button" id="highway-btn-fwd" onclick="setHighwayDirection('fwd')" class="px-3 py-1 rounded-full text-xs font-bold text-brand-navy bg-brand-cyan border border-brand-cyan shadow-sm transition">
-              <i class="fa-solid fa-arrow-right mr-1"></i> <span id="highway-lbl-fwd">Forward</span>
-            </button>
-            <button type="button" id="highway-btn-rev" onclick="setHighwayDirection('rev')" class="px-3 py-1 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-transparent transition">
-              <i class="fa-solid fa-arrow-left mr-1"></i> <span id="highway-lbl-rev">Return</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Route Selector Chips (Mobile Touch Scrollable) -->
-      <div class="mt-6 pt-4 border-t border-white/10">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-            <i class="fa-solid fa-map-location-dot text-brand-cyan"></i> Select Active Travel Corridor:
-          </span>
-          <span class="text-[10px] text-cyan-300 hidden sm:inline-block font-medium">Click any route or milestone to inspect</span>
-        </div>
-        <div class="route-chips-scroll flex items-center gap-2 pb-2">
-          <button type="button" onclick="switchHighwayRoute('route_sangamner')" id="btn-route-sangamner" class="route-corridor-btn active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-cyan text-brand-navy border border-brand-cyan shadow-md shadow-cyan-500/20 transition flex items-center gap-2">
-            <i class="fa-solid fa-road text-xs"></i>
-            <span data-i18n="hud_tab_sangamner">Sangamner (NH 60)</span>
-            <span class="text-[10px] bg-brand-navy/30 px-1.5 py-0.5 rounded font-mono">205 km</span>
-          </button>
-
-          <button type="button" onclick="switchHighwayRoute('route_ahilyanagar')" id="btn-route-ahilyanagar" class="route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2">
-            <i class="fa-solid fa-city text-xs text-sky-400"></i>
-            <span data-i18n="hud_tab_ahilyanagar">Ahilyanagar (SH 27)</span>
-            <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">195 km</span>
-          </button>
-
-          <button type="button" onclick="switchHighwayRoute('route_airport')" id="btn-route-airport" class="route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2">
-            <i class="fa-solid fa-plane-departure text-xs text-emerald-400"></i>
-            <span data-i18n="hud_tab_airport">Airport & Hinjawadi</span>
-            <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">215 km</span>
-          </button>
-
-          <button type="button" onclick="switchHighwayRoute('route_return')" id="btn-route-return" class="route-corridor-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 transition flex items-center gap-2">
-            <i class="fa-solid fa-arrow-left-long text-xs text-amber-400"></i>
-            <span data-i18n="hud_tab_return">Pune ➔ Shrirampur (Return)</span>
-            <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded font-mono">Daily</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Active Route Telemetry HUD Strip -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 relative z-20">
-      <div class="bg-white/5 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 border border-white/10 shadow-lg">
-        
-        <!-- Top Row: Route Title & Corridor Badge -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10 mb-3 text-xs">
-          <div class="flex items-center gap-2">
-            <span id="hud-route-code" class="px-2 py-0.5 rounded bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/40 font-mono font-bold text-[11px]">
-              NH 60 EXPRESSWAY
-            </span>
-            <h3 id="hud-active-route-name" class="font-bold text-white text-sm sm:text-base">
-              Shrirampur ⇄ Sangamner ⇄ Pune
-            </h3>
-          </div>
-          <p id="hud-active-via-text" class="text-xs text-slate-300 italic">
-            Via Loni, Sangamner, Alephata, Narayangaon, Chakan
-          </p>
-        </div>
-
-        <!-- Middle Row: Telemetry Gauges -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <!-- Stat 1: Odometer -->
-          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10">
-            <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_lbl_progress">Trip Progress</div>
-            <div id="hud-odometer-val" class="font-mono font-black text-brand-cyan text-sm sm:text-base mt-0.5">
-              0 km / 205 km
-            </div>
-          </div>
-
-          <!-- Stat 2: Approaching Landmark -->
-          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10">
-            <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_lbl_next_stop">Approaching Landmark</div>
-            <div id="hud-next-stop-val" class="font-bold text-sky-200 text-xs sm:text-sm mt-0.5 truncate">
-              Shrirampur Departure
-            </div>
-          </div>
-
-          <!-- Stat 3: Est Duration -->
-          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10">
-            <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_stat_est_time">Est. Duration</div>
-            <div id="hud-est-duration-val" class="font-bold text-emerald-300 text-xs sm:text-sm mt-0.5">
-              <i class="fa-solid fa-clock text-xs mr-1 text-emerald-400"></i> ~4h 15m
-            </div>
-          </div>
-
-          <!-- Stat 4: Seat Fare & Book Action -->
-          <div class="bg-brand-navy/60 p-2.5 rounded-xl border border-white/10 flex items-center justify-between">
-            <div>
-              <div class="text-[10px] text-slate-400 font-semibold uppercase" data-i18n="hud_stat_fare">Seat Sharing</div>
-              <div class="font-black text-brand-cyan text-xs sm:text-sm mt-0.5">
-                From ₹550
-              </div>
-            </div>
-            <button type="button" onclick="bookSelectedRoute()" class="px-2.5 py-1.5 rounded-lg bg-brand-cyan text-brand-navy font-bold text-[11px] hover:bg-cyan-300 transition shadow">
-              <i class="fa-solid fa-ticket mr-1"></i> <span data-i18n="hud_btn_book_route">Book Seat</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Progress Bar Track with Checkpoints -->
-        <div class="mt-4 relative">
-          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-            <div id="hud-trip-progress-bar" class="bg-gradient-to-r from-brand-cyan via-sky-400 to-blue-500 h-full rounded-full transition-all duration-150" style="width: 5%;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Animated Expressway Road & Parallax Canvas -->
-    <div class="relative w-full overflow-hidden select-none">
-      
-      <!-- Distant Hills Silhouette & Scenery -->
-      <div class="h-14 sm:h-20 w-full relative opacity-60">
-        <!-- Mountain ridges silhouette -->
-        <svg class="absolute bottom-0 w-full h-14 sm:h-20 text-slate-900" viewBox="0 0 1200 120" fill="currentColor" preserveAspectRatio="none">
-          <path d="M0,120 L0,70 Q120,20 250,60 T600,40 T900,65 T1200,45 L1200,120 Z" opacity="0.4" />
-          <path d="M0,120 L0,85 Q160,45 320,80 T750,60 T1100,75 T1200,60 L1200,120 Z" opacity="0.7" />
-        </svg>
-
-        <!-- Windmills on hills -->
-        <div class="absolute bottom-3 left-[22%] hidden sm:block">
-          <div class="w-1 h-7 bg-slate-700 mx-auto"></div>
-          <div class="w-6 h-6 -mt-9 -ml-2.5 windmill-blade-anim text-slate-500">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12 L12 2 M12 12 L3 17 M12 12 L21 17" /></svg>
-          </div>
-        </div>
-
-        <div class="absolute bottom-3 left-[68%] hidden sm:block">
-          <div class="w-1 h-9 bg-slate-700 mx-auto"></div>
-          <div class="w-7 h-7 -mt-11 -ml-3 windmill-blade-anim text-slate-500" style="animation-duration: 9s;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12 L12 2 M12 12 L3 17 M12 12 L21 17" /></svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Highway Milestone Landmarks Strip (Dynamic based on selected route) -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2">
-        <div id="highway-milestones-track" class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-slate-400">
-          <!-- Generated dynamically by script.js -->
-        </div>
-      </div>
-
-      <!-- 2-Lane Highway Asphalt Road -->
-      <div id="highway-road-track" class="highway-road-surface h-28 sm:h-36 w-full relative border-y-2 border-slate-700/80 shadow-inner">
-        
-        <!-- Guardrail / Shoulder with road reflectors -->
-        <div class="absolute top-1 left-0 right-0 h-1 bg-gradient-to-r from-amber-400/40 via-cyan-400/50 to-amber-400/40 opacity-70"></div>
-        <div class="absolute bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-amber-400/40 via-cyan-400/50 to-amber-400/40 opacity-70"></div>
-        
-        <!-- Center lane dashed divider with continuous highway motion -->
-        <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 highway-dashed-line"></div>
-
-        <!-- The Moving Cab Vehicle with Headlights & Wheels (GPU-accelerated translate3d) -->
-        <div id="moving-cab-container" class="absolute bottom-3 sm:bottom-6 z-20" style="left: 0; transform: translate3d(20px, 0, 0);">
-          <div class="cab-suspension-anim">
-            <div id="moving-cab-chassis" class="transition-transform duration-300 ease-in-out">
-              <svg viewBox="0 0 160 55" class="w-28 sm:w-44 h-auto drop-shadow-[0_10px_25px_rgba(6,182,212,0.5)]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Projected Headlight Cone Ray -->
-                <polygon points="144,35 240,12 240,58 144,45" fill="url(#headlightBeamGrad)" class="headlight-pulse-beam" />
-                
-                <!-- Rear Taillight Glow -->
-                <ellipse cx="6" cy="35" rx="10" ry="6" fill="#ef4444" opacity="0.45" />
-
-                <!-- Car Body Chassis (Crisp Aerodynamic White Sedan) -->
-                <path d="M12 36 L22 24 L52 14 L104 14 L132 26 L148 33 L152 40 L146 44 L135 44 C133 38 126 34 118 34 C110 34 103 38 101 44 L55 44 C53 38 46 34 38 34 C30 34 23 38 21 44 L10 44 C6 44 4 41 5 38 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
-                
-                <!-- Tinted Aerodynamic Windows -->
-                <path d="M54 16 L102 16 L126 26 L50 26 Z" fill="#0f172a" />
-                <path d="M56 18 L76 18 L76 25 L53 25 Z" fill="#38bdf8" opacity="0.75" />
-                <path d="M80 18 L100 18 L104 25 L80 25 Z" fill="#38bdf8" opacity="0.75" />
-                <path d="M104 19 L122 26 L107 26 Z" fill="#38bdf8" opacity="0.6" />
-                
-                <!-- Passenger Silhouettes Inside -->
-                <circle cx="70" cy="22" r="2.8" fill="#ffffff" opacity="0.85" />
-                <circle cx="92" cy="22" r="2.8" fill="#ffffff" opacity="0.85" />
-                
-                <!-- Taxi Roof Badge with Cyan Glow -->
-                <rect x="74" y="9" width="22" height="6" rx="2" fill="#0b1528" stroke="#06b6d4" stroke-width="1.2" />
-                <text x="85" y="13.5" font-size="3.5" font-weight="900" fill="#00d2ff" text-anchor="middle" font-family="Outfit, sans-serif">CAB</text>
-                
-                <!-- Electric Cyan & Azure Blue Racing Decals -->
-                <path d="M14 36 L146 36" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" />
-                <path d="M50 39 L110 39" stroke="#0284c7" stroke-width="1" stroke-linecap="round" />
-                
-                <!-- Headlamp Lens & Rear Lamp -->
-                <path d="M147 34 L152 36 L150 40 L145 38 Z" fill="#00d2ff" />
-                <path d="M7 33 L12 34 L11 38 L6 37 Z" fill="#ef4444" />
-                
-                <!-- Front Wheel with Spinning Rim -->
-                <g class="cab-wheel-spin" style="transform-origin: 118px 44px;">
-                  <circle cx="118" cy="44" r="9" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
-                  <circle cx="118" cy="44" r="5.5" fill="#1e293b" />
-                  <line x1="118" y1="39" x2="118" y2="49" stroke="#94a3b8" stroke-width="1.5" />
-                  <line x1="113" y1="44" x2="123" y2="44" stroke="#94a3b8" stroke-width="1.5" />
-                  <line x1="114.5" y1="40.5" x2="121.5" y2="47.5" stroke="#94a3b8" stroke-width="1.2" />
-                  <line x1="114.5" y1="47.5" x2="121.5" y2="40.5" stroke="#94a3b8" stroke-width="1.2" />
-                  <circle cx="118" cy="44" r="2.2" fill="#06b6d4" />
-                </g>
-                
-                <!-- Rear Wheel with Spinning Rim -->
-                <g class="cab-wheel-spin" style="transform-origin: 38px 44px;">
-                  <circle cx="38" cy="44" r="9" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
-                  <circle cx="38" cy="44" r="5.5" fill="#1e293b" />
-                  <line x1="38" y1="39" x2="38" y2="49" stroke="#94a3b8" stroke-width="1.5" />
-                  <line x1="33" y1="44" x2="43" y2="44" stroke="#94a3b8" stroke-width="1.5" />
-                  <line x1="34.5" y1="40.5" x2="41.5" y2="47.5" stroke="#94a3b8" stroke-width="1.2" />
-                  <line x1="34.5" y1="47.5" x2="41.5" y2="40.5" stroke="#94a3b8" stroke-width="1.2" />
-                  <circle cx="38" cy="44" r="2.2" fill="#06b6d4" />
-                </g>
-
-                <!-- Gradient Defs for Headlight Beams -->
-                <defs>
-                  <linearGradient id="headlightBeamGrad" x1="144" y1="38" x2="240" y2="38" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.85" />
-                    <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.35" />
-                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
   </section>
 
   <!-- Services Section -->
@@ -1757,7 +1500,7 @@
             <h3 class="font-display font-bold text-2xl text-brand-navy mb-2" data-i18n="fare_tier1_title">Seat Sharing</h3>
             <div class="flex items-baseline gap-1 my-4">
               <span class="text-xs text-slate-500 font-semibold">Starting from</span>
-              <span class="text-4xl font-black text-brand-blue">₹550</span>
+              <span class="text-4xl font-black text-emerald-600">₹550</span>
               <span class="text-xs text-slate-500 font-medium">/ seat</span>
             </div>
             <p class="text-xs text-slate-600 mb-6" data-i18n="fare_tier1_desc">
