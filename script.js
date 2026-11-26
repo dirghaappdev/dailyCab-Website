@@ -7,6 +7,34 @@
 let currentBookingType = 'Seat Sharing';
 let currentLanguage = 'en';
 
+// Google Sheets Webhook Configuration for VIP App Subscribers & Inquiries
+// Connect your deployed Google Apps Script Web App URL below
+const GOOGLE_SHEET_WEBHOOK_URL = '';
+
+function sendToGoogleSheet(data) {
+  if (!GOOGLE_SHEET_WEBHOOK_URL || GOOGLE_SHEET_WEBHOOK_URL.includes('REPLACE')) {
+    return Promise.resolve();
+  }
+  try {
+    const formData = new FormData();
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        formData.append(key, data[key]);
+      }
+    }
+    return fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    }).catch(err => {
+      console.warn('Google Sheet submission note:', err);
+    });
+  } catch (err) {
+    console.warn('Google Sheet sync error:', err);
+    return Promise.resolve();
+  }
+}
+
 // DOM Ready initialization
 document.addEventListener('DOMContentLoaded', () => {
   // Set current year in footer
@@ -420,7 +448,7 @@ function handleNotifySubmit(event, inputId, msgId) {
     return;
   }
 
-  // Save to localStorage waitlist
+  // 1. Save to localStorage waitlist as local backup
   try {
     const existing = JSON.parse(localStorage.getItem('daily_cab_waitlist') || '[]');
     existing.push({ contact: val, type: isPhone ? 'phone' : 'email', date: new Date().toISOString() });
@@ -428,6 +456,16 @@ function handleNotifySubmit(event, inputId, msgId) {
   } catch (err) {
     console.error('Waitlist storage error:', err);
   }
+
+  // 2. Sync to Central Google Sheet (Real-time cloud database)
+  const payload = {
+    contact: val,
+    type: isPhone ? 'Phone' : 'Email',
+    date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+    page: window.location.pathname.includes('app.html') ? 'App Page' : 'Home Page',
+    source: 'VIP Waitlist Subscription'
+  };
+  sendToGoogleSheet(payload);
 
   // Display rich celebratory confirmation message
   if (msgEl) {
