@@ -22,9 +22,13 @@ function sendToGoogleSheet(data) {
         params.append(key, data[key]);
       }
     }
-    return fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+    const queryUrl = `${GOOGLE_SHEET_WEBHOOK_URL}?${params.toString()}`;
+    return fetch(queryUrl, {
       method: 'POST',
-      body: params,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: params.toString(),
       mode: 'no-cors'
     }).catch(err => {
       console.warn('Google Sheet submission note:', err);
