@@ -9,22 +9,22 @@ let currentLanguage = 'en';
 
 // Google Sheets Webhook Configuration for VIP App Subscribers & Inquiries
 // Connect your deployed Google Apps Script Web App URL below
-const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby8sHNerv3Jlf3XCyIPoXEhBXNUDluhOYesNl6IAxy8A1zd1kFZULBiBeOQkvZWFmvH/exec';
+const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby2dR-5wqFH6RSLguzEYEmQGHr_pbirTMZl79cXJ-h-zvhg7puvt7yiYKwL2JIwT17qJw/exec';
 
 function sendToGoogleSheet(data) {
   if (!GOOGLE_SHEET_WEBHOOK_URL || GOOGLE_SHEET_WEBHOOK_URL.includes('REPLACE')) {
     return Promise.resolve();
   }
   try {
-    const formData = new FormData();
+    const params = new URLSearchParams();
     for (const key in data) {
       if (Object.prototype.hasOwnProperty.call(data, key)) {
-        formData.append(key, data[key]);
+        params.append(key, data[key]);
       }
     }
     return fetch(GOOGLE_SHEET_WEBHOOK_URL, {
       method: 'POST',
-      body: formData,
+      body: params,
       mode: 'no-cors'
     }).catch(err => {
       console.warn('Google Sheet submission note:', err);
