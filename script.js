@@ -9,7 +9,7 @@ let currentLanguage = 'en';
 
 // Google Sheets Webhook Configuration for VIP App Subscribers & Inquiries
 // Connect your deployed Google Apps Script Web App URL below
-const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbz9q_cNoqwjFUhCpuTlp8a9A7wq3LFLBQqA-sc2-ihYh7E29-dsyVhDHCzq7exPpBKR/exec';
+const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby8sHNerv3Jlf3XCyIPoXEhBXNUDluhOYesNl6IAxy8A1zd1kFZULBiBeOQkvZWFmvH/exec';
 
 function sendToGoogleSheet(data) {
   if (!GOOGLE_SHEET_WEBHOOK_URL || GOOGLE_SHEET_WEBHOOK_URL.includes('REPLACE')) {
