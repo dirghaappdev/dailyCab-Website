@@ -480,10 +480,10 @@ function handleNotifySubmit(event, inputId, msgId) {
         ? '🎉 आप VIP वेटलिस्ट में सफलतापूर्वक जुड़ गए हैं!' 
         : '🎉 You are on the Early Access VIP List!');
     const descText = currentLanguage === 'mr' 
-      ? `धन्यवाद! <strong>${val}</strong> वर डेली कॅब ॲप प्ले स्टोअर व ॲप स्टोअरवर लाइव्ह होताच आम्ही तुम्हाला थेट डाउनलोड लिंक आणि पहिल्या प्रवासासाठी ₹५० चे डिस्काउंट व्हाउचर पाठवू.` 
+      ? `धन्यवाद! <strong>${val}</strong> वर डेली कॅब ॲप प्ले स्टोअर व ॲप स्टोअरवर लाइव्ह होताच आम्ही थेट लिंक आणि निवडक राइड्सवर ₹१०० चे डिस्काउंट व्हाउचर पाठवू.` 
       : (currentLanguage === 'hi' 
-        ? `धन्यवाद! <strong>${val}</strong> पर डेली कैब ऐप प्ले स्टोर व ऐप स्टोर पर लाइव होते ही हम आपको डायरेक्ट डाउनलोड लिंक और ₹50 का डिस्काउंट वाउचर भेजेंगे।` 
-        : `Thank you! We will notify <strong>${val}</strong> the moment the Daily Cab App goes live on Google Play & App Store, plus send your ₹50 launch discount!`);
+        ? `धन्यवाद! <strong>${val}</strong> पर डेली कैब ऐप लाइव होते ही हम डायरेक्ट डाउनलोड लिंक और चुनिंदा राइड्स पर ₹100 का डिस्काउंट वाउचर भेजेंगे।` 
+        : `Thank you! We will notify <strong>${val}</strong> the moment the Daily Cab App goes live on Google Play & App Store, plus send your ₹100 off discount voucher on selected rides!`);
 
     msgEl.innerHTML = `
       <div class="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs flex items-start gap-3 shadow-xl">
