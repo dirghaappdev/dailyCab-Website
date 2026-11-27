@@ -358,23 +358,47 @@
             Welcome to <strong class="text-white font-semibold">Daily Pune Cab</strong> – your travel partner for convenient and comfortable journeys between Shrirampur and Pune. Introducing our <strong class="text-brand-cyan font-semibold">new mobile application</strong> for 1-tap booking, complete ride history, and live tracking.
           </p>
 
-          <!-- App Feature Teaser Banner -->
-          <div class="p-3.5 rounded-2xl bg-white/5 border border-sky-400/20 backdrop-blur-sm flex items-center justify-between gap-3 text-left">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue to-cyan-400 flex items-center justify-center text-white text-lg shadow-md shrink-0">
-                <i class="fa-solid fa-clock-rotate-left"></i>
+          <!-- Hero VIP Waitlist Pre-Registration Card -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 via-[#071d2b]/85 to-[#04201c]/85 border-2 border-emerald-400/40 shadow-2xl backdrop-blur-md text-left relative overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-400 text-slate-950 shadow-sm animate-pulse">
+                  <i class="fa-solid fa-hourglass-half"></i> APP COMING SOON
+                </span>
+                <span class="text-xs font-black text-white" data-i18n="hero_vip_badge">
+                  Join VIP Waitlist
+                </span>
               </div>
-              <div>
-                <div class="text-xs font-bold text-white flex items-center gap-1.5" data-i18n="app_banner_title">
-                  Ride History & Hassle-Free Booking
-                  <span class="bg-cyan-500/20 text-cyan-300 text-[10px] px-1.5 py-0.2 rounded border border-cyan-400/30">In-App</span>
-                </div>
-                <div class="text-[11px] text-slate-400" data-i18n="app_banner_desc">View past trip invoices, rebook frequent routes, and track cabs in real time</div>
-              </div>
+              <span class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+                <i class="fa-solid fa-gift"></i> <span data-i18n="hero_vip_offer">Get ₹50 Off First Ride</span>
+              </span>
             </div>
-            <a href="app.html" class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-brand-cyan hover:text-white transition whitespace-nowrap" data-i18n="explore_app">
-              Explore App <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </a>
+
+            <p class="text-xs text-slate-300 mb-3 leading-relaxed" data-i18n="hero_vip_desc">
+              Be first to get the Daily Cab app when live on Google Play & App Store! Enter your mobile number for instant alert & launch discount:
+            </p>
+
+            <form onsubmit="handleNotifySubmit(event, 'hero-vip-input', 'hero-vip-success')" class="space-y-2">
+              <div class="flex flex-col sm:flex-row gap-2">
+                <div class="relative flex-1">
+                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-400">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                  </div>
+                  <input type="text" id="hero-vip-input" required placeholder="Enter Mobile Number or Email ID" data-i18n-placeholder="hero_vip_placeholder" class="w-full text-xs pl-10 pr-3 py-2.5 bg-slate-950/90 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                </div>
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-black text-xs uppercase tracking-wider transition whitespace-nowrap shadow-md flex items-center justify-center gap-1.5" data-i18n="hero_vip_btn">
+                  <i class="fa-solid fa-bell mr-1"></i> Notify Me When Live
+                </button>
+              </div>
+              <div id="hero-vip-success" class="hidden mt-2"></div>
+            </form>
+            
+            <div class="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Free pre-registration</span>
+              <a href="app.html" class="text-cyan-300 hover:text-white font-semibold flex items-center gap-1 transition" data-i18n="explore_app">
+                Preview App Features <i class="fa-solid fa-chevron-right text-[9px]"></i>
+              </a>
+            </div>
           </div>
 
           <!-- Core Highlights List -->
@@ -1830,7 +1854,7 @@
   </aside>
 
   <!-- Custom Scripts -->
-  <script src="translations.js?v=2.3"></script>
-  <script src="script.js?v=2.3"></script>
+  <script src="translations.js?v=2.4"></script>
+  <script src="script.js?v=2.4"></script>
 </body>
 </html>
